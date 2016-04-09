@@ -140,6 +140,11 @@ PRODUCT_PACKAGES += \
     setup_fs \
     e2fsck \
 
+# Power
+PRODUCT_PACKAGES += \
+    power.default \
+    power.mt6582
+
 # Dynamically set props
 #PRODUCT_SYSTEM_PROPERTY_BLACKLIST := \
 #    ro.product.name \
