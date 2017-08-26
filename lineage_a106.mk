@@ -95,6 +95,10 @@ PRODUCT_PACKAGES += \
     libaudio-resampler \
     tinymix
 
+# Doze
+PRODUCT_PACKAGES += \
+    DozeServices
+
 # Camera
 PRODUCT_PACKAGES += \
 	Snap
