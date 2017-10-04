@@ -12,7 +12,7 @@ Battery | 1600 mAh
 Display | 4" 800 x 480 px
 Camera  | 5MPx
 
-![Android One](http://news.bbcimg.co.uk/media/images/77588000/jpg/_77588715_09e78d0d-b02b-418e-8bd0-a4176c985978.jpg "All three android one devices")
+![Giraffe](http://highscreen.ru/uploads/ZeraFrS/Screen/zera_f_rev.s1-850.jpg "Highscreen Zera F rev.S")
 
 This branch is for building LineageOS 14.1 ROMS.
 
