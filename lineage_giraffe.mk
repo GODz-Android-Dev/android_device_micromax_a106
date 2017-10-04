@@ -84,10 +84,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/root/init.zeta0y_core.rc:root/init.zeta0y_core.rc \
     $(LOCAL_PATH)/rootdir/root/fstab.sprout:root/fstab.sprout \
     $(LOCAL_PATH)/rootdir/root/enableswap.sh:root/enableswap.sh
-
-# Correct bootanimation size for the screen
-TARGET_SCREEN_HEIGHT := 800
-TARGET_SCREEN_WIDTH := 480
 	
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/root/twrp.fstab:recovery/root/etc/twrp.fstab
