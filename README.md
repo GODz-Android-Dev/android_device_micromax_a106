@@ -12,7 +12,7 @@ Battery | 1600 mAh
 Display | 4" 800 x 480 px
 Camera  | 5MPx
 
-![Giraffe](http://highscreen.ru/uploads/ZeraFrS/Screen/zera_f_rev.s1-850.jpg "Highscreen Zera F rev.S")
+![Giraffe](http://shop.highscreen.ru/thumb/512x512xin/upload/iblock/745/74501780c3b55a5d0bb61be96063df97.jpg "Highscreen Zera F rev.S")
 
 This branch is for building LineageOS 14.1 ROMS.
 
