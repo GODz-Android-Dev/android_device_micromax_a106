@@ -191,12 +191,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.dex2oat-filter=speed \
     dalvik.vm.dex2oat-swap=false
 
-PRODUCT_NAME := lineage_giraffe
-PRODUCT_DEVICE := giraffe
-PRODUCT_BRAND := Highscreen
-PRODUCT_MANUFACTURER := Mediatek
-PRODUCT_MODEL := Zera F
-
 USE_CUSTOM_AUDIO_POLICY := 1
 
 # Superuser
