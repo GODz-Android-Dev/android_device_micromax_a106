@@ -8,7 +8,7 @@ cd bionic
 patch -p1 < ../device/micromax/a106/patches/0002-Apply-LIBC-version-to-__pthread_gettid.patch
 cd ..
 cd packages/apps/Settings
-patch -p1 < ../../../device/micromax/a106/patches/0005-add-author-info-in-device-info.patch
+patch -p1 -b < ../../../device/micromax/a106/patches/0005-add-author-info-in-device-info.patch
 cd ../../..
 cd frameworks/av
 patch -p1 < ../../device/micromax/a106/patches/0006-fix-access-wvm-to-ReadOptions.patch
