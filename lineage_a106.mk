@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-LOCAL_PATH := device/highscreen/giraffe
+LOCAL_PATH := device/micromax/a106
 
 # GPS
 PRODUCT_COPY_FILES += \
@@ -150,7 +150,7 @@ PRODUCT_AAPT_CONFIG := normal hdpi
 PRODUCT_AAPT_PREF_CONFIG := hdpi
 
 # call the proprietary setup
-$(call inherit-product, vendor/highscreen/giraffe/giraffe-vendor.mk)
+$(call inherit-product, vendor/micromax/a106/a106-vendor.mk)
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)

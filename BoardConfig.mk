@@ -1,4 +1,4 @@
-LOCAL_PATH := device/highscreen/giraffe
+LOCAL_PATH := device/micromax/a106
 
 TARGET_BOARD_PLATFORM := mt6582
 TARGET_CPU_ABI := armeabi-v7a
@@ -31,16 +31,16 @@ BOARD_FLASH_BLOCK_SIZE := 131072
 # kernel stuff
 BOARD_CUSTOM_BOOTIMG_MK := $(LOCAL_PATH)/tools/bootimg.mk
 MTK_PLATFORM := mt6582
-MTK_PROJECT := giraffe
-TARGET_KERNEL_SOURCE := kernel/mediatek/giraffe
-TARGET_KERNEL_CONFIG := zera_defconfig
+MTK_PROJECT := a106
+TARGET_KERNEL_SOURCE := kernel/mediatek/a106
+TARGET_KERNEL_CONFIG := a106_defconfig
 BOARD_KERNEL_CMDLINE :=
 BOARD_MKBOOTIMG_ARGS := --kernel_offset 0x00008000 --ramdisk_offset 0x01000000 --tags_offset 0x00000100
 BOARD_KERNEL_BASE := 0x10000000
 BOARD_KERNEL_PAGESIZE := 2048
 #KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/$(HOST_OS)-x86/arm/arm-eabi-4.8/bin
 #KERNEL_TOOLCHAIN_PREFIX := arm-eabi-
-#TARGET_PREBUILT_KERNEL := device/highscreen/giraffe/kernel
+#TARGET_PREBUILT_KERNEL := device/micromax/a106/kernel
 
 # Hack for build
 $(shell mkdir -p $(OUT)/obj/KERNEL_OBJ/usr)
@@ -75,6 +75,7 @@ TW_MAX_BRIGHTNESS := 255
 TW_USE_MODEL_HARDWARE_ID_FOR_DEVICE_ID := true
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/class/android_usb/f_mass_storage/lun/file
 TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/rootdir/root/twrp.fstab
+BOARD_HAS_FLIPPED_SCREEN := true
 
 # OpenGL
 USE_OPENGL_RENDERER:= true
@@ -122,4 +123,4 @@ USE_CAMERA_STUB := true
 
 # SELinux
 BOARD_SEPOLICY_DIRS += \
-    device/highscreen/giraffe/sepolicy
+    device/micromax/a106/sepolicy

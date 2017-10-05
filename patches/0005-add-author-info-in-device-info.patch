@@ -1,15 +1,3 @@
-diff --git a/res/values-ru/strings.xml b/res/values-ru/strings.xml
-index 4d575ae..412762b 100644
---- a/res/values-ru/strings.xml
-+++ b/res/values-ru/strings.xml
-@@ -1034,6 +1034,7 @@
-     <string name="system_update_settings_list_item_summary" msgid="3853057315907710747"></string>
-     <string name="firmware_version" msgid="4801135784886859972">"Версия Android"</string>
-     <string name="security_patch" msgid="8438384045870296634">"Последнее обновление системы безопасности"</string>
-+    <string name="author_info">"Автор сборки"</string>
-     <string name="model_info" msgid="1952009518045740889">"Модель"</string>
-     <string name="fcc_equipment_id" msgid="149114368246356737">"Идентификатор оборудования"</string>
-     <string name="baseband_version" msgid="1848990160763524801">"Прошивка модуля связи"</string>
 diff --git a/res/values/strings.xml b/res/values/strings.xml
 index 3e93d41..a352391 100644
 --- a/res/values/strings.xml
@@ -19,7 +7,7 @@ index 3e93d41..a352391 100644
      <!-- Device Info screen. Used for a status item's value when the proper value is not known -->
      <string name="device_info_default">Unknown</string>
 +    <!-- Device Info screen. Used for a status item's value when the proper value is not known -->
-+    <string name="author_info_default">DeVviL</string>
++    <string name="author_info_default">Manjot Sidhu - Arbaz Khan - Piyush Kulkarni</string>
      <!-- [CHAR LIMIT=NONE] Device Info screen. Countdown for user taps to enable development settings -->
      <plurals name="show_dev_countdown">
          <item quantity="one">You are now <xliff:g id="step_count">%1$d</xliff:g> step away from being a developer.</item>
@@ -28,7 +16,7 @@ index 3e93d41..a352391 100644
      <!-- About phone screen, status item label  [CHAR LIMIT=60] -->
      <string name="security_patch">Android security patch level</string>
 +    <!-- About phone screen, status item label  [CHAR LIMIT=60] -->
-+    <string name="author_info">Build author</string>
++    <string name="author_info">Device Maintainer</string>
      <!-- About phone screen, status item label  [CHAR LIMIT=40] -->
      <string name="model_info">Model</string>
      <!-- About phone screen, fcc equipment id label  [CHAR LIMIT=40] -->
@@ -45,7 +33,7 @@ index f756b26..0f87d0b 100644
 +                android:title="@string/author_info"
 +                android:summary="@string/author_info_default">
 +                <intent android:action="android.intent.action.VIEW"
-+                        android:data="http://4pda.ru/forum/index.php?showuser=1759948" />
++                        android:data="https://github.com/GODz-Android-Dev" />
 +        </PreferenceScreen>
 +
          <!-- Device FCC equipment id -->

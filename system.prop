@@ -1,5 +1,7 @@
 #
-# system.prop for sprout
+# system.prop for Micromax Unite 2 A106
+# By GODz Android Dev
+# Manjot Sidhu - Arbaz Khan - Piyush Kulkarni
 #
 				  
 
@@ -85,7 +87,7 @@ ro.telephony.ril_class=MediaTekRIL
 ro.telephony.ril.config=fakeiccid
 bgw.current3gband=0
 ril.external.md=0
-ro.sf.hwrotation=0
+ro.sf.hwrotation=180
 ril.current.share_modem=2
 ril.radiooff.poweroffMD=0
 media.stagefright.legacyencoder=true

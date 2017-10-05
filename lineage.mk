@@ -5,25 +5,25 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
 # Call device specific makefile
-$(call inherit-product, device/highscreen/giraffe/lineage_giraffe.mk)
+$(call inherit-product, device/micromax/a106/lineage_a106.mk)
 
-LOCAL_PATH := device/highscreen/giraffe
+LOCAL_PATH := device/micromax/a106
 
 # Common CM stuff
-CM_BUILD := giraffe
+CM_BUILD := a106
 
 $(call inherit-product, vendor/cm/config/common_full_phone.mk)
 
-PRODUCT_BUILD_PROP_OVERRIDES += BUILD_FINGERPRINT=7.1.2/MRA58M/2280749:user/release-keys PRIVATE_BUILD_DESC="giraffe-user 7.1.2 MRA58M 2280749 release-keys"
+PRODUCT_BUILD_PROP_OVERRIDES += BUILD_FINGERPRINT=7.1.2/MRA58M/2280749:user/release-keys PRIVATE_BUILD_DESC="a106-user 7.1.2 MRA58M 2280749 release-keys"
 
-PRODUCT_NAME := lineage_giraffe
-PRODUCT_DEVICE := giraffe
-PRODUCT_BRAND := Highscreen
+PRODUCT_NAME := lineage_a106
+PRODUCT_DEVICE := a106
+PRODUCT_BRAND := micromax
 PRODUCT_MANUFACTURER := Mediatek
-PRODUCT_MODEL := Zera F
+PRODUCT_MODEL := Unite 2
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    PRODUCT_DEVICE="giraffe"
+    PRODUCT_DEVICE="a106"
 
 # Correct bootanimation size for the screen
 TARGET_SCREEN_HEIGHT := 800
