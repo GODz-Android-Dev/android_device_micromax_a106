@@ -28,7 +28,7 @@ lib/libJpgEncPipe.so
 lib/libfeatureio.so
 lib/libcam.utils.so
 lib/libblisrc32.so
-lib/libaudiopolicymanagersprout.so
+lib/libaudiopolicymanagera106.so
 lib/libion_mtk.so
 lib/libnvram.so
 lib/libbluetooth_mtk_pure.so
@@ -48,7 +48,7 @@ lib/hw/gps.default.so
 lib/hw/sensors.mt6582.so
 lib/hw/audio.primary.mt6582.so
 lib/hw/lights.default.so
-lib/hw/power.sprout.so
+lib/hw/power.a106.so
 lib/libcam_platform.so
 lib/libcam.iopipe_FrmB.so
 lib/libcam.camshot.so
