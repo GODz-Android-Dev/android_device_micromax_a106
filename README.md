@@ -1,18 +1,18 @@
-## micromax Zera F rev.S
+## Micromax Unite 2 A106
 Unofficial codename - a106
+
+THANKS @DeVviL FOR THE TREE 
 
 Basic   | Spec Sheet
 -------:|:-------------------------
-CPU     | 1.3GHz Quad-Core MT6582M
+CPU     | 1.3GHz Quad-Core MT6582
 GPU     | Mali-400MP
 Memory  | 1GB RAM
 Shipped Android Version | 4.4.2
 Storage | 4GB
-Battery | 1600 mAh
-Display | 4" 800 x 480 px
+Battery | 2000 mAh
+Display | 4.7" 800 x 480 px
 Camera  | 5MPx
-
-![a106](http://shop.micromax.ru/thumb/512x512xin/upload/iblock/745/74501780c3b55a5d0bb61be96063df97.jpg "micromax Zera F rev.S")
 
 This branch is for building LineageOS 14.1 ROMS.
 
