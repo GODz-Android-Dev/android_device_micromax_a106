@@ -1,5 +1,5 @@
 # platform specific configuration items
-import /init.a106.usb.rc
+import /init.sprout.usb.rc
 import /init.modem.rc
 
 on early-init
@@ -23,7 +23,7 @@ on init
 
 on fs
     write /proc/bootprof "INIT:eMMC:Mount_All_START"
-    mount_all /fstab.a106
+    mount_all /fstab.sprout
     write /proc/bootprof "INIT:eMMC:Mount_All_END"
 
 # mount different fs end

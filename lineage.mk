@@ -33,5 +33,5 @@ TARGET_SCREEN_WIDTH := 480
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/rootdir/root/init.a106.rc:root/init.a106.rc \
-    $(LOCAL_PATH)/rootdir/root/fstab.a106:root/fstab.a106
+    $(LOCAL_PATH)/rootdir/root/init.sprout.rc:root/init.sprout.rc \
+    $(LOCAL_PATH)/rootdir/root/fstab.sprout:root/fstab.sprout
