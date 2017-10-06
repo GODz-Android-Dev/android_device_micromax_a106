@@ -34,7 +34,7 @@ MTK_PLATFORM := mt6582
 MTK_PROJECT := a106
 TARGET_KERNEL_SOURCE := kernel/micromax/a106
 TARGET_KERNEL_CONFIG := a106_defconfig
-BOARD_KERNEL_CMDLINE :=
+BOARD_KERNEL_CMDLINE := console=tty0 console=ttyMT3,921600n1 root=/dev/ram vmalloc=496M slub_max_order=0 slub_debug=0 androidboot.hardware=sprout androidboot.selinux=permissive
 BOARD_MKBOOTIMG_ARGS := --kernel_offset 0x00008000 --ramdisk_offset 0x01000000 --tags_offset 0x00000100
 BOARD_KERNEL_BASE := 0x10000000
 BOARD_KERNEL_PAGESIZE := 2048
