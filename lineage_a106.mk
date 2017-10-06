@@ -97,7 +97,7 @@ PRODUCT_PACKAGES += \
 
 # Camera
 PRODUCT_PACKAGES += \
-	Snap
+	SnapdragonCamera
 
 # Messaging
 PRODUCT_PACKAGES += \
