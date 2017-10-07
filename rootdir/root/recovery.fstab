@@ -1,8 +1,13 @@
-/dev/misc		        /misc		emmc	defaults defaults
-/dev/block/mmcblk0p7	/data		ext4	noatime,nosuid,nodev,barrier=1,data=ordered,nomblk_io_submit,noauto_da_alloc,errors=panic wait,check,encryptable=footer
-/dev/block/mmcblk0p5	/system		ext4	ro,barrier=1                                                    wait
-/dev/block/mmcblk0p6	/cache		ext4	noatime,nosuid,nodev,barrier=1,data=ordered,nomblk_io_submit,noauto_da_alloc,errors=panic wait,check
-/dev/bootimg		    /boot		emmc	defaults defaults
-/dev/recovery		    /recovery	emmc	defaults defaults
-/dev/block/mmcblk1	    /sdcard		vfat	defaults defaults
-/dev/block/mmcblk1p1	/sdcard		vfat	defaults defaults
+/logo 		emmc /dev/logo flags=display="Boot_Logo";backup=1
+/boot 		emmc /dev/bootimg     flags=display="Boot_img";backup=1
+/recovery 	emmc /dev/recovery  flags=display="Recovery";backup=1
+/nvram 		emmc /dev/nvram flags=display="Nvram/IMEI";backup=1
+/uboot 		emmc /dev/uboot flags=display="Uboot";backup=1
+/sec_ro 	emmc /dev/block/mmcblk0p4 flags=subpartitionof=/nvram;backup=1
+/system_image     emmc      /emmc@android
+/system		      ext4		/emmc@android           flags=display="System";backup=1;wipeingui
+/cache            ext4       /dev/block/mmcblk0p6
+/data             ext4       /dev/block/mmcblk0p7   length=-16384
+/external_sd      vfat       /dev/block/mmcblk1p1 /dev/block/mmcblk1  flags=display="External SDcard";storage;wipeingui;removable
+/usb-otg          vfat       /dev/block/sda1 /dev/block/sda           flags=display="USB-OTG••PenDrive";storage;wipeingui;removable
+
