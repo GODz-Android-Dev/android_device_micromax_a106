@@ -65,9 +65,12 @@ TW_CRYPTO_FS_OPTIONS := "nosuid,nodev,noatime,discard,noauto_da_alloc,data=order
 TW_CUSTOM_CPU_TEMP_PATH := /sys/class/thermal/thermal_zone5/temp
 TW_BRIGHTNESS_PATH := /sys/class/leds/lcd-backlight/brightness
 TW_MAX_BRIGHTNESS := 255
+TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/class/android_usb/android0/f_mass_storage/lun/file"
 TW_NO_USB_STORAGE := true
 TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/rootdir/root/twrp.fstab
 BOARD_HAS_FLIPPED_SCREEN := true
+BOARD_HAS_LARGE_FILESYSTEM := true
+TW_USE_MODEL_HARDWARE_ID_FOR_DEVICE_ID := true
 
 # OpenGL
 USE_OPENGL_RENDERER:= true
