@@ -87,7 +87,11 @@ PRODUCT_COPY_FILES += \
 	
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/root/twrp.fstab:recovery/root/etc/twrp.fstab
-	
+
+# HIDL
+PRODUCT_COPY_FILES += \
+    device/micromax/a106/hidl/manifest.xml:system/vendor/manifest.xml
+
 PRODUCT_PACKAGES += \
     audio.a2dp.default \
     audio.usb.default \
