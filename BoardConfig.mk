@@ -59,7 +59,7 @@ TW_NO_REBOOT_BOOTLOADER := true
 TW_NO_USB_STORAGE := true
 TW_EXTERNAL_STORAGE_PATH := "/external_sd"
 TW_EXTERNAL_STORAGE_MOUNT_POINT := "external_sd"
-TW_INCLUDE_CRYPTO := true
+TW_INCLUDE_JB_CRYPTO := true
 TW_CRYPTO_FS_TYPE := "ext4"
 TW_CRYPTO_REAL_BLKDEV := "/dev/block/mmcblk0p7"
 TW_CRYPTO_MNT_POINT := "/data"
@@ -67,11 +67,9 @@ TW_CRYPTO_FS_OPTIONS := "nosuid,nodev,noatime,discard,noauto_da_alloc,data=order
 TW_CUSTOM_CPU_TEMP_PATH := /sys/devices/virtual/thermal/thermal_zone1/temp
 TW_BRIGHTNESS_PATH := /sys/devices/platform/leds-mt65xx/leds/lcd-backlight/brightness
 TW_MAX_BRIGHTNESS := 255
-TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/virtual/android_usb/android0/f_mass_storage/lun%d/file"
 TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/rootdir/root/twrp.fstab
 BOARD_HAS_FLIPPED_SCREEN := true
 BOARD_HAS_LARGE_FILESYSTEM := true
-TW_USE_MODEL_HARDWARE_ID_FOR_DEVICE_ID := true
 
 # OpenGL
 USE_OPENGL_RENDERER:= true
