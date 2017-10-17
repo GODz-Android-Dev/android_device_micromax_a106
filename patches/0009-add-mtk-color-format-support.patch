@@ -1,6 +1,6 @@
 diff --git a/include/camera/MtkCamera.h b/include/camera/MtkCamera.h
 new file mode 100644
-index 0000000..8982feb
+index 000000000..8982febe5
 --- /dev/null
 +++ b/include/camera/MtkCamera.h
 @@ -0,0 +1,275 @@
@@ -281,7 +281,7 @@ index 0000000..8982feb
 +#endif  //ANDROID_HARDWARE_MTK_CAMERA_H
 diff --git a/include/camera/MtkCameraParameters.h b/include/camera/MtkCameraParameters.h
 new file mode 100644
-index 0000000..4a34957
+index 000000000..4a349574d
 --- /dev/null
 +++ b/include/camera/MtkCameraParameters.h
 @@ -0,0 +1,364 @@
@@ -650,10 +650,10 @@ index 0000000..4a34957
 +
 +#endif
 diff --git a/include/media/stagefright/ACodec.h b/include/media/stagefright/ACodec.h
-index d682632..10a3905 100644
+index d68263272..10a3905ef 100644
 --- a/include/media/stagefright/ACodec.h
 +++ b/include/media/stagefright/ACodec.h
-@@ -351,6 +351,9 @@ protected:
+@@ -351,6 +351,9 @@ struct ACodec : public AHierarchicalStateMachine, public CodecBase {
  #ifdef USE_SAMSUNG_COLORFORMAT
      void setNativeWindowColorFormat(OMX_COLOR_FORMATTYPE &eNativeColorFormat);
  #endif
@@ -664,11 +664,11 @@ index d682632..10a3905 100644
      status_t freeOutputBuffersNotOwnedByComponent();
      BufferInfo *dequeueBufferFromNativeWindow();
 diff --git a/include/media/stagefright/ColorConverter.h b/include/media/stagefright/ColorConverter.h
-index 270c809..cf0cda5 100644
+index c69277080..f2fb476a8 100644
 --- a/include/media/stagefright/ColorConverter.h
 +++ b/include/media/stagefright/ColorConverter.h
-@@ -82,6 +82,10 @@ private:
-     status_t convertTIYUV420PackedSemiPlanar(
+@@ -85,6 +85,10 @@ struct ColorConverter {
+     status_t convertYUV422PlanartoYUV420Planar(
              const BitmapParams &src, const BitmapParams &dst);
  
 +#ifdef MTK_HARDWARE
@@ -680,7 +680,7 @@ index 270c809..cf0cda5 100644
  };
 diff --git a/include/media/stagefright/dpframework/DpBlitStream.h b/include/media/stagefright/dpframework/DpBlitStream.h
 new file mode 100644
-index 0000000..57fd482
+index 000000000..57fd482d6
 --- /dev/null
 +++ b/include/media/stagefright/dpframework/DpBlitStream.h
 @@ -0,0 +1,243 @@
@@ -929,7 +929,7 @@ index 0000000..57fd482
 +#endif  // __DP_BLIT_STREAM_H__
 diff --git a/include/media/stagefright/dpframework/DpDataType.h b/include/media/stagefright/dpframework/DpDataType.h
 new file mode 100644
-index 0000000..d858e97
+index 000000000..d858e9727
 --- /dev/null
 +++ b/include/media/stagefright/dpframework/DpDataType.h
 @@ -0,0 +1,450 @@
@@ -1384,12 +1384,12 @@ index 0000000..d858e97
 +
 +#endif  // __DP_DATA_TYPE_H__
 diff --git a/media/libstagefright/ACodec.cpp b/media/libstagefright/ACodec.cpp
-index 7aaa1e6..c24c05f 100644
+index 9dda86180..a67636aa3 100644
 --- a/media/libstagefright/ACodec.cpp
 +++ b/media/libstagefright/ACodec.cpp
-@@ -85,6 +85,16 @@
- 
- #include <stagefright/AVExtensions.h>
+@@ -91,6 +91,16 @@
+ #include "ExynosHWCService.h"
+ #endif
  
 +#ifdef MTK_HARDWARE
 +#include <media/stagefright/dpframework/DpBlitStream.h>
@@ -1404,7 +1404,7 @@ index 7aaa1e6..c24c05f 100644
  namespace android {
  
  enum {
-@@ -1036,6 +1046,11 @@ status_t ACodec::setupNativeWindowSizeFormatAndUsage(
+@@ -1046,6 +1056,11 @@ status_t ACodec::setupNativeWindowSizeFormatAndUsage(
      setNativeWindowColorFormat(eNativeColorFormat);
  #endif
  
@@ -1416,7 +1416,7 @@ index 7aaa1e6..c24c05f 100644
      ALOGV("gralloc usage: %#x(OMX) => %#x(ACodec)", omxUsage, usage);
      err = setNativeWindowSizeFormatAndUsage(
              nativeWindow,
-@@ -1043,6 +1058,8 @@ status_t ACodec::setupNativeWindowSizeFormatAndUsage(
+@@ -1053,6 +1068,8 @@ status_t ACodec::setupNativeWindowSizeFormatAndUsage(
              def.format.video.nFrameHeight,
  #ifdef USE_SAMSUNG_COLORFORMAT
              eNativeColorFormat,
@@ -1425,7 +1425,7 @@ index 7aaa1e6..c24c05f 100644
  #else
              def.format.video.eColorFormat,
  #endif
-@@ -1433,6 +1450,29 @@ void ACodec::setNativeWindowColorFormat(OMX_COLOR_FORMATTYPE &eNativeColorFormat
+@@ -1443,6 +1460,29 @@ void ACodec::setNativeWindowColorFormat(OMX_COLOR_FORMATTYPE &eNativeColorFormat
  }
  #endif
  
@@ -1456,10 +1456,10 @@ index 7aaa1e6..c24c05f 100644
      CHECK_EQ((int)info->mStatus, (int)BufferInfo::OWNED_BY_US);
  
 diff --git a/media/libstagefright/Android.mk b/media/libstagefright/Android.mk
-index 9fcb299..754d0b6 100644
+index 56c28cd20..abf0f70e4 100644
 --- a/media/libstagefright/Android.mk
 +++ b/media/libstagefright/Android.mk
-@@ -198,6 +198,17 @@ LOCAL_C_INCLUDES += \
+@@ -230,6 +230,17 @@ LOCAL_C_INCLUDES += \
  	$(TOP)/hardware/samsung/exynos4/include
  endif
  
@@ -1478,7 +1478,7 @@ index 9fcb299..754d0b6 100644
  
  LOCAL_MODULE_TAGS := optional
 diff --git a/media/libstagefright/CameraSource.cpp b/media/libstagefright/CameraSource.cpp
-index b51a7b8..7d41710 100644
+index 8707d967b..e49e73db3 100644
 --- a/media/libstagefright/CameraSource.cpp
 +++ b/media/libstagefright/CameraSource.cpp
 @@ -44,6 +44,10 @@
@@ -1506,7 +1506,7 @@ index b51a7b8..7d41710 100644
      if (!strcmp(colorFormat, CameraParameters::PIXEL_FORMAT_YUV422SP)) {
 diff --git a/media/libstagefright/OMXCodec.cpp b/media/libstagefright/OMXCodec.cpp
 new file mode 100644
-index 0000000..de00ff2
+index 000000000..de00ff282
 --- /dev/null
 +++ b/media/libstagefright/OMXCodec.cpp
 @@ -0,0 +1,4549 @@
@@ -6060,7 +6060,7 @@ index 0000000..de00ff2
 +
 +}  // namespace android
 diff --git a/media/libstagefright/colorconversion/Android.mk b/media/libstagefright/colorconversion/Android.mk
-index 0bf9701..334aa7e 100644
+index 0bf9701c8..334aa7e5e 100644
 --- a/media/libstagefright/colorconversion/Android.mk
 +++ b/media/libstagefright/colorconversion/Android.mk
 @@ -13,6 +13,13 @@ LOCAL_C_INCLUDES := \
@@ -6078,7 +6078,7 @@ index 0bf9701..334aa7e 100644
  LOCAL_CLANG := true
  LOCAL_SANITIZE := signed-integer-overflow
 diff --git a/media/libstagefright/colorconversion/ColorConverter.cpp b/media/libstagefright/colorconversion/ColorConverter.cpp
-index 3ca7cc0..a2d42a4 100644
+index 15e1fba0d..b19e7f206 100644
 --- a/media/libstagefright/colorconversion/ColorConverter.cpp
 +++ b/media/libstagefright/colorconversion/ColorConverter.cpp
 @@ -26,6 +26,14 @@
@@ -6115,10 +6115,10 @@ index 3ca7cc0..a2d42a4 100644
 +        case OMX_COLOR_FormatVendorMTKYUV:
 +        case OMX_COLOR_FormatVendorMTKYUV_FCM:
 +#endif
+         case OMX_COLOR_FormatYUV420PackedSemiPlanar:
              return true;
  
-         default:
-@@ -557,4 +573,93 @@ uint8_t *ColorConverter::initClip() {
+@@ -613,4 +629,93 @@ uint8_t *ColorConverter::initClip() {
      return &mClip[-kClipMin];
  }
  
@@ -6212,4 +6212,3 @@ index 3ca7cc0..a2d42a4 100644
 +
 +
  }  // namespace android
-
