@@ -90,6 +90,8 @@ BOARD_HAS_FLIPPED_SCREEN := true
 # EGL settings
 BOARD_EGL_CFG := $(DEVICE_FOLDER)/egl.cfg
 USE_OPENGL_RENDERER := true
+BOARD_EGL_WORKAROUND_BUG_10194508 := true
+
 
 # Set insecure for root access and device specifics
 ADDITIONAL_DEFAULT_PROPERTIES += ro.secure=0 \
