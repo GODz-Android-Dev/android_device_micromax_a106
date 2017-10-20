@@ -88,8 +88,8 @@ TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/rootdir/root/twrp.fstab
 BOARD_HAS_FLIPPED_SCREEN := true
 
 # EGL settings
-BOARD_EGL_CFG := $(DEVICE_FOLDER)/egl.cfg
-USE_OPENGL_RENDERER := true
+#BOARD_EGL_CFG := $(DEVICE_FOLDER)/egl.cfg
+#USE_OPENGL_RENDERER := true
 
 
 # Set insecure for root access and device specifics
