@@ -91,6 +91,7 @@ BOARD_HAS_FLIPPED_SCREEN := true
 BOARD_EGL_CFG := $(DEVICE_FOLDER)/egl.cfg
 USE_OPENGL_RENDERER := true
 
+
 # Set insecure for root access and device specifics
 ADDITIONAL_DEFAULT_PROPERTIES += ro.secure=0 \
 ro.allow.mock.location=1 \
