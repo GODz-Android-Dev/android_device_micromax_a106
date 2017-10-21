@@ -62,7 +62,6 @@ BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_15x24.h\"
 # TWRP stuff
 TW_THEME := portrait_hdpi
 TW_SDEXT_NO_EXT4 := true
-TW_EXCLUDE_MTP := true
 TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
 TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/class/android_usb/android0/f_mass_storage/lun/file"
 TW_CUSTOM_CPU_TEMP_PATH := "/sys/class/power_supply/battery/batt_temp"
@@ -90,16 +89,6 @@ BOARD_HAS_FLIPPED_SCREEN := true
 # EGL settings
 #BOARD_EGL_CFG := $(DEVICE_FOLDER)/egl.cfg
 #USE_OPENGL_RENDERER := true
-
-
-# Set insecure for root access and device specifics
-ADDITIONAL_DEFAULT_PROPERTIES += ro.secure=0 \
-ro.allow.mock.location=1 \
-persist.mtk.aee.aed=on \
-ro.debuggable=1 \
-persist.service.acm.enable=1 \
-persist.sys.usb.config=mass_storage,adb \
-ro.mount.fs=EXT4
 
 # OpenGL
 USE_OPENGL_RENDERER:= true
