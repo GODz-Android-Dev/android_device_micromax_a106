@@ -16,7 +16,7 @@ allow radio mtkrild:unix_stream_socket connectto;
 allow mtkrild ccci_device:chr_file { rw_file_perms };
 allow mtkrild sysfs_wake_lock:file { rw_file_perms };
 allow mtkrild self:udp_socket { connect create bind ioctl };
-allow mtkrild shell_exec:file { read open execute execute_no_trans getattr };;
+allow mtkrild shell_exec:file { read open execute execute_no_trans };
 allow mtkrild proc:file { write read open ioctl };
 allow init tmpfs:lnk_file create;
 allow mtkrild misc_device:chr_file { read write open };

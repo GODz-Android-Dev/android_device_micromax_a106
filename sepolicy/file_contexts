@@ -1,15 +1,15 @@
 /system/bin/mtk_agpsd         u:object_r:mtk_agpsd_exec:s0
 /system/bin/6620_launcher     u:object_r:conn_launcher_exec:s0
 /system/bin/ccci_fsd          u:object_r:ccci_fsd_exec:s0
-/system/bin/ccci_rpcd          u:object_r:ccci_rpcd_exec:s0														   
+/system/bin/ccci_rpcd          u:object_r:ccci_rpcd_exec:s0
 /system/bin/ccci_mdinit       u:object_r:ccci_mdinit_exec:s0
-/system/bin/lgpserver         u:object_r:lgpserver_exec:s0													  
+/system/bin/lgpserver         u:object_r:lgpserver_exec:s0
 /system/bin/drvbd             u:object_r:drvbd_exec:s0
 /system/bin/nvram_agent_binder u:object_r:nvram_agent_binder_exec:s0
-/system/bin/nvram_daemon      u:object_r:nvram_daemon_exec:s0
+/system/bin/nvram_daemon u:object_r:nvram_daemon_exec:s0
 /system/xbin/mnld             u:object_r:mnld_exec:s0
 /system/bin/bmm050d           u:object_r:bmm050d_exec:s0
-/system/bin/permission_check  u:object_r:permission_check_exec:s0														
+/system/bin/permission_check  u:object_r:permission_check_exec:s0
 /system/bin/msensord          u:object_r:msensord_exec:s0
 /system/bin/thermal_manager   u:object_r:thermal_manager_exec:s0
 /system/bin/wmt_loader        u:object_r:wmt_loader_exec:s0
@@ -30,13 +30,6 @@
 /dev/ccci_monitor     u:object_r:ccci_monitor_device:s0
 /dev/mtk-adc-cali     u:object_r:mtk_adc_cali_device:s0
 /dev/devmap           u:object_r:devmap_device:s0
-/dev/block/mmcblk0p1  u:object_r:nvram_device:s0
-/dev/block/mmcblk0p2  u:object_r:nvram_device:s0
-/dev/block/mmcblk0p3  u:object_r:protect_device:s0
-/dev/block/mmcblk0p4  u:object_r:protect_device:s0
-/dev/block/mmcblk0p15 u:object_r:cache_device:s0
-/dev/block/mmcblk0p16 u:object_r:userdata_device:s0
-/dev/block/mmcblk0p18 u:object_r:frp_block_device:s0
 /dev/ccci_.*          u:object_r:ccci_device:s0
 /dev/fm(/.*)?         u:object_r:fm_device:s0
 /dev/socket/rild(.*)? u:object_r:rild_socket:s0
@@ -68,7 +61,9 @@
 /dev/kd_camera_hw  u:object_r:camera_device:s0
 /dev/kd_camera_flashlight  u:object_r:camera_device:s0
 /dev/MTK_SMI       u:object_r:camera_device:s0
+/dev/FM50AF        u:object_r:camera_device:s0
 /dev/DW9714AF      u:object_r:camera_device:s0
+/dev/DW9718AF      u:object_r:camera_device:s0
 /dev/GAF001AF      u:object_r:camera_device:s0
 /dev/GAF002AF      u:object_r:camera_device:s0
 /dev/GAF008AF      u:object_r:camera_device:s0
@@ -78,7 +73,20 @@
 /dev/stpgps        u:object_r:mnld_device:s0
 /dev/radio(/*)?    u:object_r:radio_device:s0
 /dev/aed[0-9]+     u:object_r:aed_device:s0
+
+# block devices
+
+/dev/block/mmcblk0p7 u:object_r:misc_block_device:s0
+/dev/block/mmcblk0p9 u:object_r:system_block_device:s0
+/dev/block/mmcblk0p10 u:object_r:cache_block_device:s0
 /dev/block/mmcblk0p13 u:object_r:aed_block_device:s0
+/dev/block/mmcblk0  u:object_r:nvram_device:s0
+/dev/block/mmcblk0p11 u:object_r:userdata_block_device:s0
+/dev/block/zram0 u:object_r:swap_block_device:s0
+
+
+
+
 /dev/Vcodec        u:object_r:Vcodec_device:s0
 /dev/ebc           u:object_r:ebc_device:s0
 /dev/sw_sync       u:object_r:sw_sync_device:s0
@@ -88,31 +96,28 @@
 /dev/als_ps            u:object_r:als_ps_device:s0
 /dev/mtk_jpeg      u:object_r:mtk_jpeg_device:s0
 /dev/nvram	u:object_r:nvram_device:s0
-						 
 
-/protect_f(/.*)?         u:object_r:protect_f_data_file:s0
-/protect_s(/.*)?         u:object_r:protect_s_data_file:s0
 /data/amit(/.*)?         u:object_r:amit_data_file:s0
 /data/gps_mnl(/.*)?      u:object_r:mnld_data_file:s0
 /data/misc/touchpanel(/.*)?  u:object_r:touchpanel_data_file:s0
-/data/nvram(/.*)?        u:object_r:nvram_data_file:s0
-/data/nvram/bt(/.*)?     u:object_r:nvram_bluetooth_data_file:s0
-/data/nvram/media(/.*)?  u:object_r:nvram_media_data_file:s0
+/data/nvram/APCFG/APRDCL/FILE_VER u:object_r:bt_ver_cfg:s0
+/data/nvram/APCFG/APRDEB/BT_Addr u:object_r:bt_addr_cfg:s0
+/data/nvram(/.*)? u:object_r:nvram_data_file:s0
 /data/agps_supl(/.*)?    u:object_r:agpsd_data_file:s0
 /sys/class/gpsdrv/gps(/.*)?   u:object_r:sysfs_gpsdrv:s0
-/data/misc/gps(/.*)?     u:object_r:gps_data_file:s0
+/data/misc/gps(/.*)?   u:object_r:gps_data_file:s0
 /data/core(/.*)?         u:object_r:aee_core_data_file:s0
 /data/aee_exp(/.*)?      u:object_r:aee_exp_data_file:s0
 /data/dumpsys(/.*)?      u:object_r:aee_dumpsys_data_file:s0
 /data/misc/mblog(/.*)?   u:object_r:logmisc_data_file:s0
 /data/log_temp(/.*)?     u:object_r:logtemp_data_file:s0
 /data/mdl(/.*)?          u:object_r:mdl_data_file:s0
-/data/ccci_cfg(/.*)?     u:object_r:nvram_data_file:s0
-/dev/preloader(/.*)?     u:object_r:preloader_device:s0
-/dev/pro_info(/.*)?      u:object_r:pro_info_device:s0
-/dev/misc-sd(/.*)?       u:object_r:misc_sd_device:s0
-/dev/misc(/.*)?          u:object_r:misc_device:s0 
-/dev/misc2               u:object_r:misc_device:s0 
-/dev/sec_ro(/.*)?        u:object_r:sec_ro_device:s0 								  
-/data/misc/sensor/.id                      u:object_r:sensord_data_file:s0
+/data/ccci_cfg(/.*)?   u:object_r:nvram_data_file:s0
+/dev/preloader(/.*)? u:object_r:preloader_device:s0
+/dev/pro_info(/.*)? u:object_r:pro_info_device:s0
+/dev/misc-sd(/.*)? u:object_r:misc_sd_device:s0
+/dev/misc(/.*)? u:object_r:misc_device:s0 
+/dev/misc2 u:object_r:misc_device:s0 
+/dev/sec_ro(/.*)? u:object_r:sec_ro_device:s0 
+/data/misc/sensor(/.*)?                     u:object_r:sensord_data_file:s0
 /data/misc/sensor/sensord.log              u:object_r:sensord_data_file:s0
