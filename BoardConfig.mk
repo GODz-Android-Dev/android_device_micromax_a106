@@ -48,17 +48,6 @@ $(shell mkdir -p $(OUT)/obj/KERNEL_OBJ/usr)
 # Bluetooth
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(LOCAL_PATH)/bluetooth
 
-# MTK Partitions Defines
-MTK_BOOT_DEVICE_NAME := /dev/bootimg
-MTK_BOOT_DEVICE_SIZE := 16777216
-MTK_RECOVERY_DEVICE_NAME := /dev/recovery
-MTK_RECOVERY_DEVICE_SIZE := 16777216
-MTK_UBOOT_DEVICE_NAME := /dev/uboot
-MTK_UBOOT_DEVICE_SIZE := 393216
-MTK_NVRAM_DEVICE_NAME := /dev/nvram
-MTK_NVRAM_DEVICE_SIZE := 5242880
-BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_15x24.h\"
-
 # TWRP stuff
 TW_THEME := portrait_hdpi
 TW_SDEXT_NO_EXT4 := true
@@ -68,23 +57,24 @@ TW_CUSTOM_CPU_TEMP_PATH := "/sys/class/power_supply/battery/batt_temp"
 RECOVERY_SDCARD_ON_DATA := true
 BOARD_HAS_LARGE_FILESYSTEM := true
 RECOVERY_GRAPHICS_USE_LINELENGTH := true
-TW_NO_REBOOT_BOOTLOADER := true
-TW_DEFAULT_EXTERNAL_STORAGE := true
-TW_INTERNAL_STORAGE_PATH := "/emmc"
-TW_INTERNAL_STORAGE_MOUNT_POINT := "emmc"
-TW_EXTERNAL_STORAGE_PATH := "/sdcard"
-TW_EXTERNAL_STORAGE_MOUNT_POINT := "sdcard"
-TW_USE_MODEL_HARDWARE_ID_FOR_DEVICE_ID := true
-SP1_NAME := "uboot"
-SP1_BACKUP_METHOD := image
-SP1_MOUNTABLE := 0
-SP2_NAME := "nvram"
-SP2_DISPLAY_NAME := "nvram"
-SP2_BACKUP_METHOD := image
-SP2_MOUNTABLE := 0
+TW_THEME := portrait_hdpi
 TW_INCLUDE_FB2PNG := true
+TW_DEFAULT_EXTERNAL_STORAGE := true
+TW_NO_REBOOT_BOOTLOADER := true
+TW_NO_USB_STORAGE := true
+TW_EXTERNAL_STORAGE_PATH := "/external_sd"
+TW_EXTERNAL_STORAGE_MOUNT_POINT := "external_sd"
+TW_INCLUDE_JB_CRYPTO := true
+TW_CRYPTO_FS_TYPE := "ext4"
+TW_CRYPTO_REAL_BLKDEV := "/dev/block/mmcblk0p7"
+TW_CRYPTO_MNT_POINT := "/data"
+TW_CRYPTO_FS_OPTIONS := "nosuid,nodev,noatime,discard,noauto_da_alloc,data=ordered"
+TW_CUSTOM_CPU_TEMP_PATH := /sys/devices/virtual/thermal/thermal_zone1/temp
+TW_BRIGHTNESS_PATH := /sys/devices/platform/leds-mt65xx/leds/lcd-backlight/brightness
+TW_MAX_BRIGHTNESS := 255
 TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/rootdir/root/twrp.fstab
 BOARD_HAS_FLIPPED_SCREEN := true
+BOARD_HAS_LARGE_FILESYSTEM := true
 
 # EGL settings
 #BOARD_EGL_CFG := $(DEVICE_FOLDER)/egl.cfg
