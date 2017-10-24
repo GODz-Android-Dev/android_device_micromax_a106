@@ -10,6 +10,6 @@
 /emmc@protect_f   /protect_f          ext4      noatime,nosuid,nodev,noauto_da_alloc,commit=1,nodelalloc    wait,check,autoformat
 /emmc@protect_s   /protect_s          ext4      noatime,nosuid,nodev,noauto_da_alloc,commit=1,nodelalloc    wait,check,autoformat
 
-/devices/platform/mtk-msdc.0/mmc_host*            auto        vfat  defaults       voldmanaged=sdcard0:8,nonremovable
-/devices/platform/mtk-msdc.1/mmc_host*            auto        vfat  defaults       voldmanaged=sdcard1:auto,noemulatedsd
+# N doesn't needs to mount internal storage
+/devices/platform/mtk-msdc.1/mmc_host*	auto	auto	defaults        voldmanaged=sdcard1:auto,noemulatedsd
 /devices/platform/mt_usb*		auto 	auto	defaults	voldmanaged=usb:auto
