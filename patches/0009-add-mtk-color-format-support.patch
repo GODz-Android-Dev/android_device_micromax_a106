@@ -6106,18 +6106,20 @@ index 15e1fba0d..b19e7f206 100644
  }
  
  ColorConverter::~ColorConverter() {
-@@ -51,6 +62,11 @@ bool ColorConverter::isValid() const {
+@@ -50,7 +61,12 @@ bool ColorConverter::isValid() const {
+         case OMX_COLOR_FormatCbYCrY:
          case OMX_QCOM_COLOR_FormatYVU420SemiPlanar:
          case OMX_COLOR_FormatYUV420SemiPlanar:
-         case OMX_TI_COLOR_FormatYUV420PackedSemiPlanar:
+-        case OMX_TI_COLOR_FormatYUV420PackedSemiPlanar:
 +#ifdef MTK_HARDWARE
 +        case OMX_MTK_COLOR_FormatYV12:
 +        case OMX_COLOR_FormatVendorMTKYUV:
 +        case OMX_COLOR_FormatVendorMTKYUV_FCM:
 +#endif
-         case OMX_COLOR_FormatYUV420PackedSemiPlanar:
++       case OMX_TI_COLOR_FormatYUV420PackedSemiPlanar:
              return true;
  
+         default:
 @@ -613,4 +629,93 @@ uint8_t *ColorConverter::initClip() {
      return &mClip[-kClipMin];
  }
