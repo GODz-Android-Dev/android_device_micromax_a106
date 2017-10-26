@@ -1,6 +1,6 @@
 [
   {
-    "repository": "https://github.com/GODz-Android-Dev/wakemod.git",
+    "repository": "GODz-Android-Dev/wakemod.git",
     "target_path": "kernel/micromax/a106"
     "branch": "master"
   },
