@@ -17,10 +17,10 @@ $(call inherit-product, vendor/cm/config/common_full_phone.mk)
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_FINGERPRINT=7.1.2/MRA58M/2280749:user/release-keys PRIVATE_BUILD_DESC="a106-user 7.1.2 MRA58M 2280749 release-keys"
 
 PRODUCT_NAME := lineage_a106
-PRODUCT_DEVICE := a106
-PRODUCT_BRAND := micromax
+PRODUCT_DEVICE := A106
+PRODUCT_BRAND := Micromax
 PRODUCT_MANUFACTURER := Mediatek
-PRODUCT_MODEL := Unite 2
+PRODUCT_MODEL := Micromax Unite 2
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
     PRODUCT_DEVICE="a106"
