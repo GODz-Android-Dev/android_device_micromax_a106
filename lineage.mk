@@ -29,6 +29,14 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
 TARGET_SCREEN_HEIGHT := 800
 TARGET_SCREEN_WIDTH := 480
 
+# Root options
+ROOT_METHOD=magisk
+
+# 3rd party apps
+PRODUCT_PACKAGES += \
+    AdAway \
+    MiXplorer
+
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 
