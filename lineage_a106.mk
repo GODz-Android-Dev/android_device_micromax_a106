@@ -158,9 +158,11 @@ $(call inherit-product, frameworks/native/build/phone-xhdpi-1024-dalvik-heap.mk)
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES := \
 	ro.crypto.state=unencrypted \
 	ro.mount.fs=EXT4 \
-	ro.secure=1 \
-	ro.allow.mock.location=0 \
+	ro.secure=0 \
+	ro.allow.mock.location=1 \
 	ro.debuggable=1 \
+	persist.sys.usb.config = mtp, adb \
+	persist.service. acm.enable = 1 \
 	ro.zygote=zygote32 \
 	camera.disable_zsl_mode=1 \
 	dalvik.vm.dex2oat-Xms=64m \
