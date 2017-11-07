@@ -377,9 +377,18 @@ on post-fs-data
     chmod 0660 /dev/kd_camera_flashlight
     chmod 0660 /dev/kd_camera_hw_bus2
     chmod 0660 /dev/FM50AF
+    chmod 0660 /dev/IMX091AF
+    chmod 0660 /dev/BU6424AF
+    chmod 0660 /dev/OV5648AF_DARLING
+    chmod 0660 /dev/OV5648AF_TRULY
+    chmod 0660 /dev/OV5648AF_SUNWIN
+    chmod 0660 /dev/OV5648AF_DARLING_ZL
+    chmod 0660 /dev/OV8825AF
+    chmod 0660 /dev/OV8826AF
     chmod 0660 /dev/CAM_CAL_DRV
     chmod 0660 /dev/EEPROM_M24C08F
-    chown media media /sys/devices/platform/mt-i2c.1/i2c-1/1-007f/antibanding
+    chmod 0660 /dev/DW9714A
+
     chown system camera /dev/camera-sysram
     chown system camera /dev/camera-isp
     chown system camera /dev/camera-pipemgr
@@ -387,20 +396,17 @@ on post-fs-data
     chown system camera /dev/kd_camera_flashlight
     chown system camera /dev/kd_camera_hw_bus2
     chown system camera /dev/FM50AF
+    chown system camera /dev/IMX091AF
+    chown system camera /dev/BU6424AF
+    chown system camera /dev/OV5648AF_DARLING
+    chown system camera /dev/OV5648AF_TRULY
+    chown system camera /dev/OV5648AF_SUNWIN
+    chown system camera /dev/OV5648AF_DARLING_ZL
+    chown system camera /dev/OV8825AF
+    chown system camera /dev/OV8826AF
     chown system camera /dev/CAM_CAL_DRV
     chown system camera /dev/EEPROM_M24C08F
-
-    chmod 0660 /dev/OV5648AF_DARLING
-    chown system camera /dev/OV5648AF_DARLING
-
-    chmod 0660 /dev/OV5648AF_TRULY
-    chown system camera /dev/OV5648AF_TRULY
-
-    chmod 0660 /dev/OV5648AF_SUNWIN
-    chown system camera /dev/OV5648AF_SUNWIN
-
-    chmod 0660 /dev/OV5648AF_DARLING_ZL
-    chown system camera /dev/OV5648AF_DARLING_ZL
+    chown system camera /dev/DW9714A
 
     #MATV
     chmod 0660 /dev/MATV
