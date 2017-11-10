@@ -195,10 +195,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 USE_CUSTOM_AUDIO_POLICY := 1
 
-#KERNEL ADIUTOR
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/priv-app/KernelAdiutor/KernelAdiutor.apk:system/priv-app/KernelAdiutor/KernelAdiutor.apk
-
 # FASTER BOOTANIMATION
 TARGET_BOOTANIMATION_HALF_RES := true
 
