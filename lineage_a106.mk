@@ -93,11 +93,25 @@ PRODUCT_COPY_FILES += \
     device/micromax/a106/hidl/manifest.xml:system/vendor/manifest.xml
 
 PRODUCT_PACKAGES += \
+    android.hardware.audio@2.0-impl \
+    android.hardware.audio.effect@2.0-impl \
     audio.a2dp.default \
     audio.usb.default \
     audio.r_submix.default \
     libaudio-resampler \
     tinymix
+
+# Sensors
+PRODUCT_PACKAGES += \
+    android.hardware.sensors@1.0-impl
+
+# Vibrator
+PRODUCT_PACKAGES += \
+    android.hardware.vibrator@1.0-impl
+
+# Keymaster
+PRODUCT_PACKAGES += \
+    android.hardware.keymaster@3.0-impl
 
 # Camera
 PRODUCT_PACKAGES += \
@@ -117,6 +131,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     gps.mt6582\
     YGPS
+
+# Lights
+PRODUCT_PACKAGES += \
+    android.hardware.light@2.0-impl
 
 # Wifi
  PRODUCT_PACKAGES += \
