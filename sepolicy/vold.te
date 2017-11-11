@@ -18,4 +18,3 @@ allow vold proc:file write;
 # Purpose : encrypt phone
 allow vold misc_device:chr_file { write open };
 allow vold platformblk_device:blk_file { ioctl getattr };
-allow vold zram0_device:blk_file getattr;
