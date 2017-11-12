@@ -17,13 +17,13 @@ include $(CLEAR_VARS)
 
 LOCAL_SRC_FILES := \
     bionic.cpp \
-    icu53.c \
-    icu55.c \
+    icu53.cpp \
+    icu55.cpp \
     ril.cpp \
-    ssl.c \
+    ssl.cpp \
     wvm.cpp \
     ui.cpp \
-    xlog.c \
+    xlog.cpp \
     xlog_hack.cpp \
     mtk_hack.cpp
 
