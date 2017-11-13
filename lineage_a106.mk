@@ -72,6 +72,7 @@ PRODUCT_COPY_FILES += \
 	
 PRODUCT_TAGS += dalvik.gc.type-precise
 
+# Ramdisk
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/root/init.sprout_common.rc:root/init.sprout_common.rc \
     $(LOCAL_PATH)/rootdir/root/sbin/multi_init:root/sbin/multi_init \
@@ -85,21 +86,26 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/root/fstab.sprout:root/fstab.sprout \
     $(LOCAL_PATH)/rootdir/root/enableswap.sh:root/enableswap.sh
 	
+# TWRP
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/root/twrp.fstab:recovery/root/etc/twrp.fstab
+
+# Symbols
+#PRODUCT_PACKAGES += \
+#    libshims
 
 # HIDL
 PRODUCT_COPY_FILES += \
     device/micromax/a106/hidl/manifest.xml:system/vendor/manifest.xml
 
 PRODUCT_PACKAGES += \
-    android.hardware.audio@2.0-impl \
-    android.hardware.audio.effect@2.0-impl \
     audio.a2dp.default \
     audio.usb.default \
     audio.r_submix.default \
     libaudio-resampler \
-    tinymix
+    tinymix \
+    android.hardware.audio@2.0-impl \
+    android.hardware.audio.effect@2.0-impl
 
 # Sensors
 PRODUCT_PACKAGES += \
@@ -121,12 +127,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
 	messaging
 
-# FM Radio
-PRODUCT_PACKAGES += \
-    FMRadio \
-    FMRadioGoogle \
-    FmRadioTrampoline2
-
 # GPS
 PRODUCT_PACKAGES += \
     gps.mt6582\
@@ -140,18 +140,40 @@ PRODUCT_PACKAGES += \
  PRODUCT_PACKAGES += \
     libwpa_client \
     hostapd \
-    dhcpcd.conf \
     wpa_supplicant \
-    wpa_supplicant.conf
+    wpa_supplicant.conf \
+    android.hardware.wifi@1.0-service
 
+# Graphics
 PRODUCT_PACKAGES += \
-    libsprout \
-    libxlog
-	
+    android.hardware.graphics.allocator@2.0-impl \
+    android.hardware.graphics.composer@2.1-impl \
+    android.hardware.graphics.mapper@2.0-impl \
+    android.hardware.memtrack@1.0-impl
+
+# Renderscript
+PRODUCT_PACKAGES += \
+    android.hardware.renderscript@1.0-impl
+
+# Configstore
+#PRODUCT_PACKAGES += \
+#    android.hardware.configstore@1.0-service
+
+# Bluetooth
+PRODUCT_PACKAGES += \
+    android.hardware.bluetooth@1.0-impl
+
+# DRM
+PRODUCT_PACKAGES += \
+    android.hardware.drm@1.0-impl
+
+# USB	
 PRODUCT_PACKAGES += \
     librs_jni \
-    com.android.future.usb.accessory
+    com.android.future.usb.accessory \
+    android.hardware.usb@1.0-service
 
+# Charger
 PRODUCT_PACKAGES += \
     charger \
     charger_res_images \
@@ -162,12 +184,6 @@ PRODUCT_PACKAGES += \
     setup_fs \
     e2fsck \
 
-# Dynamically set props
-#PRODUCT_SYSTEM_PROPERTY_BLACKLIST := \
-#    ro.product.name \
-#    ro.product.manufacturer \
-#    ro.product.model
-	
 PRODUCT_AAPT_CONFIG := normal hdpi
 PRODUCT_AAPT_PREF_CONFIG := hdpi
 
@@ -177,39 +193,11 @@ $(call inherit-product, vendor/micromax/a106/a106-vendor.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 $(call inherit-product, frameworks/native/build/phone-xhdpi-1024-dalvik-heap.mk)
+
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES := \
-	ro.crypto.state=unencrypted \
-	ro.mount.fs=EXT4 \
-	ro.secure=0 \
-	ro.allow.mock.location=1 \
-	ro.debuggable=1 \
-	persist.sys.usb.config = mtp, adb \
-	persist.service. acm.enable = 1 \
-	ro.zygote=zygote32 \
 	camera.disable_zsl_mode=1 \
-	dalvik.vm.dex2oat-Xms=64m \
-	dalvik.vm.dex2oat-Xmx=512m \
-	dalvik.vm.image-dex2oat-Xms=64m \
-	dalvik.vm.image-dex2oat-Xmx=64m \
-	ro.dalvik.vm.native.bridge=0 \
 	ro.hardware=sprout \
-	ro.telephony.ril_class=MediaTekRIL \
-	ro.telephony.ril.config=fakeiccid 
-
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    pm.dexopt.first-boot=verify-at-runtime \
-    pm.dexopt.boot=verify-at-runtime \
-    pm.dexopt.install=interpret-only \
-    pm.dexopt.bg-dexopt=speed-profile \
-    pm.dexopt.ab-ota=speed-profile \
-    pm.dexopt.nsys-library=speed \
-    pm.dexopt.shared-apk=speed \
-    pm.dexopt.forced-dexopt=speed \
-    pm.dexopt.core-app=speed
-
-PRODUCT_PROPERTY_OVERRIDES += \
-    dalvik.vm.dex2oat-filter=speed \
-    dalvik.vm.dex2oat-swap=false
+	ro.telephony.ril_class=MediaTekRIL
 
 USE_CUSTOM_AUDIO_POLICY := 1
 
