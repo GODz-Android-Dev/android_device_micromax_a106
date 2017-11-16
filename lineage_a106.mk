@@ -119,6 +119,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.keymaster@3.0-impl
 
+# Doze
+PRODUCT_PACKAGES += \
+    DozeServices
+
 # Camera
 PRODUCT_PACKAGES += \
 	Snap
@@ -184,6 +188,17 @@ PRODUCT_PACKAGES += \
     setup_fs \
     e2fsck \
 
+# Power
+PRODUCT_PACKAGES += \
+    power.default \
+    power.mt6582
+
+# Dynamically set props
+#PRODUCT_SYSTEM_PROPERTY_BLACKLIST := \
+#    ro.product.name \
+#    ro.product.manufacturer \
+#    ro.product.model
+	
 PRODUCT_AAPT_CONFIG := normal hdpi
 PRODUCT_AAPT_PREF_CONFIG := hdpi
 
