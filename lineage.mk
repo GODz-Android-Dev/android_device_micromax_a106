@@ -30,15 +30,12 @@ TARGET_SCREEN_HEIGHT := 800
 TARGET_SCREEN_WIDTH := 480
 
 # Root options
-WITH_SU=true
+ROOT_METHOD=magisk
 
 # 3rd party apps
 PRODUCT_PACKAGES += \
     AdAway \
     MiXplorer
-    
-# Equalizer
-WITH_DSPMANAGER=true
 
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
