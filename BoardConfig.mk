@@ -1,5 +1,7 @@
+# LOCAL PATH
 LOCAL_PATH := device/micromax/a106
 
+# ARCHITECTURE
 TARGET_BOARD_PLATFORM := mt6582
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
@@ -19,7 +21,7 @@ USE_NINJA := true
 # Block based ota
 BLOCK_BASED_OTA := false
 
-# Storage allocations
+# Storage Allocations
 BOARD_BOOTIMAGE_PARTITION_SIZE := 16777216
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 16777216
 BOARD_SYSTEMIMAGE_PARTITION_SIZE:=943718400
@@ -28,15 +30,19 @@ BOARD_CACHEIMAGE_PARTITION_SIZE:=132120576
 BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_FLASH_BLOCK_SIZE := 131072
 
-# kernel stuff
+# Use mke2fs instead of make_ext4fs
+TARGET_USES_MKE2FS := true
+
+# Kernel Stuff
 BOARD_CUSTOM_BOOTIMG_MK := $(LOCAL_PATH)/tools/bootimg.mk
 MTK_PLATFORM := mt6582
 MTK_PROJECT := a106
 TARGET_KERNEL_SOURCE := kernel/micromax/a106
 TARGET_KERNEL_CONFIG := a106_defconfig
+BOARD_KERNEL_IMAGE_NAME := zImage
 BOARD_KERNEL_CMDLINE :=
 BOARD_MKBOOTIMG_ARGS := --kernel_offset 0x00008000 --ramdisk_offset 0x01000000 --tags_offset 0x00000100
-BOARD_KERNEL_BASE := 0x10000000
+BOARD_KERNEL_BASE := 0x80000000
 BOARD_KERNEL_PAGESIZE := 2048
 KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/$(HOST_OS)-x86/arm/arm-eabi-4.8/bin
 KERNEL_TOOLCHAIN_PREFIX := arm-eabi-
@@ -83,6 +89,9 @@ BOARD_HAS_LARGE_FILESYSTEM := true
 # OpenGL
 USE_OPENGL_RENDERER:= true
 
+# GRAPHICS_ALLOCATOR_SERVICE
+SF_START_GRAPHICS_ALLOCATOR_SERVICE := true
+
 # WiFi
 # MTK WLAN SUPPORT
 BOARD_WLAN_DEVICE	         := MediaTek
@@ -103,13 +112,19 @@ WIFI_DRIVER_STATE_OFF:=0
 # Enable Minikin text layout engine (will be the default soon)
 USE_MINIKIN := true
 
+# Use dmalloc() for low memory devices
 MALLOC_SVELTE := true
+
+# Device Resolution
 DEVICE_RESOLUTION := 480x800
 
 # Mediatek flags
+BOARD_USES_LEGACY_MTK_AV_BLOB := true
 BOARD_HAS_MTK_HARDWARE := true
-MTK_HARDWARE := true
 BOARD_USES_MTK_HARDWARE := true
+MTK_HARDWARE := true
+# BOARD_GLOBAL_CFLAGS += -DMTK_HARDWARE -DADD_LEGACY_ACQUIRE_BUFFER_SYMBOL
+# BOARD_GLOBAL_CPPFLAGS += -DMTK_HARDWARE
 
 # FRAMEWORK WITH OUT SYNC
 TARGET_RUNNING_WITHOUT_SYNC_FRAMEWORK := true
@@ -117,20 +132,26 @@ TARGET_RUNNING_WITHOUT_SYNC_FRAMEWORK := true
 # Fonts
 EXTENDED_FONT_FOOTPRINT := true
 
+# System Properties
 TARGET_SYSTEM_PROP := $(LOCAL_PATH)/system.prop
 
-# Dual SIM
-SIM_COUNT := 2
-TARGET_GLOBAL_CFLAGS += -DANDROID_MULTI_SIM
-TARGET_GLOBAL_CPPFLAGS += -DANDROID_MULTI_SIM
-
+# Custom RIL
 BOARD_RIL_CLASS := ../../../$(LOCAL_PATH)/ril/
 
-TARGET_GLOBAL_CFLAGS   += -mfpu=neon -mfloat-abi=softfp
-TARGET_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp
+# Neon Flags
+BOARD_GLOBAL_CFLAGS   += -mfpu=neon -mfloat-abi=softfp
+BOARD_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp
+
+
 TARGET_USERIMAGES_USE_EXT4:=true
+# TARGET_USERIMAGES_USE_F2FS := true
+
+# Camera
 USE_CAMERA_STUB := true
 
 # SELinux
-BOARD_SEPOLICY_DIRS += \
-    device/micromax/a106/sepolicy
+#BOARD_SEPOLICY_DIRS += \
+#    device/micromax/a106/sepolicy
+
+# HIDL
+DEVICE_MANIFEST_FILE := device/micromax/a106/hidl/manifest.xml
