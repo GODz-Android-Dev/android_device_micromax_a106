@@ -221,7 +221,7 @@ protected:
     int mRefs;
 public:
     WifiCommand(wifi_handle handle, wifi_request_id id)
-	: mMsg(getHalInfo(handle)->nl80211_family_id), mId(id), mRefs(1)
+            : mMsg(getHalInfo(handle)->nl80211_family_id), mId(id), mRefs(1)
     {
         mIfaceInfo = NULL;
         mInfo = getHalInfo(handle);
@@ -229,12 +229,11 @@ public:
     }
 
     WifiCommand(wifi_interface_handle iface, wifi_request_id id)
-	: mMsg(getHalInfo(iface)->nl80211_family_id, getIfaceInfo(iface)->id),
-	mId(id), mRefs(1)
+            : mMsg(getHalInfo(iface)->nl80211_family_id, getIfaceInfo(iface)->id), mId(id), mRefs(1)
     {
         mIfaceInfo = getIfaceInfo(iface);
         mInfo = getHalInfo(iface);
-        // ALOGD("WifiCommand %p created, mInfo = %p, mIfaceInfo = %p", this, mInfo, mIfaceInfo);
+        // ALOGD("WifiCommand2 %p created, mInfo=%p, mIfaceInfo=%p, id=%d", this, mInfo, mIfaceInfo, mIfaceInfo->id);
     }
 
     virtual ~WifiCommand() {
