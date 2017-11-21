@@ -26,12 +26,6 @@
 #include "common.h"
 #include "cpp_bindings.h"
 
-/* BSSID blacklist */
-typedef struct {
-    int num_bssid;                           // number of blacklisted BSSIDs
-    mac_addr bssids[MAX_BLACKLIST_BSSID];    // blacklisted BSSIDs
-} wifi_bssid_params;
-
 typedef enum {
     GSCAN_SUBCMD_GET_CAPABILITIES = ANDROID_NL80211_SUBCMD_GSCAN_RANGE_START,
 
