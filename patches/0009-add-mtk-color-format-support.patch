@@ -653,10 +653,10 @@ diff --git a/include/media/stagefright/ACodec.h b/include/media/stagefright/ACod
 index d68263272..10a3905ef 100644
 --- a/include/media/stagefright/ACodec.h
 +++ b/include/media/stagefright/ACodec.h
-@@ -351,6 +351,9 @@ struct ACodec : public AHierarchicalStateMachine, public CodecBase {
- #ifdef USE_SAMSUNG_COLORFORMAT
-     void setNativeWindowColorFormat(OMX_COLOR_FORMATTYPE &eNativeColorFormat);
- #endif
+@@ -348,6 +348,9 @@ protected:
+     status_t submitOutputMetadataBuffer();
+     void signalSubmitOutputMetadataBufferIfEOS_workaround();
+     status_t allocateOutputBuffersFromNativeWindow();
 +#ifdef MTK_HARDWARE
 +    void setHalWindowColorFormat(OMX_COLOR_FORMATTYPE &eHalColorFormat);
 +#endif
@@ -1416,15 +1416,19 @@ index 9dda86180..a67636aa3 100644
      ALOGV("gralloc usage: %#x(OMX) => %#x(ACodec)", omxUsage, usage);
      err = setNativeWindowSizeFormatAndUsage(
              nativeWindow,
-@@ -1053,6 +1068,8 @@ status_t ACodec::setupNativeWindowSizeFormatAndUsage(
+@@ -1032,7 +1032,11 @@ status_t ACodec::setupNativeWindowSizeFormatAndUsage(
+             nativeWindow,
+             def.format.video.nFrameWidth,
              def.format.video.nFrameHeight,
- #ifdef USE_SAMSUNG_COLORFORMAT
-             eNativeColorFormat,
-+#elif MTK_HARDWARE
+-            def.format.video.eColorFormat,
++         #ifdef MTK_HARDWARE
 +            eHalColorFormat,
- #else
-             def.format.video.eColorFormat,
- #endif
++        #else
++           def.format.video.eColorFormat,
++        #endif
+             mRotationDegrees,
+             usage,
+             reconnect);
 @@ -1443,6 +1460,29 @@ void ACodec::setNativeWindowColorFormat(OMX_COLOR_FORMATTYPE &eNativeColorFormat
  }
  #endif
@@ -1459,24 +1463,24 @@ diff --git a/media/libstagefright/Android.mk b/media/libstagefright/Android.mk
 index 56c28cd20..abf0f70e4 100644
 --- a/media/libstagefright/Android.mk
 +++ b/media/libstagefright/Android.mk
-@@ -230,6 +230,17 @@ LOCAL_C_INCLUDES += \
- 	$(TOP)/hardware/samsung/exynos4/include
- endif
+@@ -175,6 +175,17 @@ LOCAL_SANITIZE := unsigned-integer-overflow signed-integer-overflow
+ # FFMPEG plugin
+ LOCAL_C_INCLUDES += $(TOP)/external/stagefright-plugins/include
  
 +# Mediatek
 +ifeq ($(strip $(BOARD_HAS_MTK_HARDWARE)),true)
 +LOCAL_CFLAGS += -DMTK_HARDWARE
 +
 +LOCAL_C_INCLUDES += \
-+	$(TOP)/hardware/mediatek/dpframework/inc
++       $(TOP)/hardware/mediatek/dpframework/inc
 +
 +LOCAL_SHARED_LIBRARIES += \
-+	libdpframework
++       libdpframework
 +endif
 +
+ #LOCAL_CFLAGS += -DLOG_NDEBUG=0
  LOCAL_MODULE:= libstagefright
- 
- LOCAL_MODULE_TAGS := optional
+
 diff --git a/media/libstagefright/CameraSource.cpp b/media/libstagefright/CameraSource.cpp
 index 8707d967b..e49e73db3 100644
 --- a/media/libstagefright/CameraSource.cpp
