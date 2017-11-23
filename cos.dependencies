@@ -1,8 +1,8 @@
 [
   {
-    "repository": "GODz-Android-Dev/wakemod.git",
+    "repository": "manjotsidhu/DareDevil_a106.git",
     "target_path": "kernel/micromax/a106"
-    "branch": "master"
+    "branch": "cm-14.1"
   },
   {
     "repository": "GODz-Android-Dev/android_vendor_micromax_a106",
@@ -12,6 +12,6 @@
   {
     "repository": "GODz-Android-Dev/android_device_micromax_a106",
     "target_path": "device/micromax/a106",
-    "branch": "lineage-14.1"
+    "branch": "cos-n-mr2"
   }
 ]
