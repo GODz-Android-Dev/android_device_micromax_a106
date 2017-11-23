@@ -9,7 +9,6 @@
 #include <linux/filter.h>
 #include <linux/errqueue.h>
 
-#include <stdlib.h>
 #include <linux/pkt_sched.h>
 #include <netlink/object-api.h>
 #include <netlink/netlink.h>
@@ -192,7 +191,7 @@ WifiCommand *wifi_unregister_cmd(wifi_handle handle, int id)
     }
 
     if (!cmd) {
-        ALOGE("Failed to remove command %d: %p", id, cmd);
+        ALOGI("Failed to remove command %d: %p", id, cmd);
     }
 
     return cmd;
