@@ -92,6 +92,7 @@ ril.current.share_modem=2
 ril.radiooff.poweroffMD=0
 media.stagefright.legacyencoder=true
 media.stagefright.less-secure=true
+persist.sys.timezone=Asia/Calcutta
 
 # Tweaks Start Here :)
 
