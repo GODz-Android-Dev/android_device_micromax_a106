@@ -1404,9 +1404,9 @@ index 9dda86180..a67636aa3 100644
  namespace android {
  
  enum {
-@@ -1046,6 +1056,11 @@ status_t ACodec::setupNativeWindowSizeFormatAndUsage(
-     setNativeWindowColorFormat(eNativeColorFormat);
- #endif
+@@ -1021,12 +1031,21 @@ status_t ACodec::setupNativeWindowSizeFormatAndUsage(
+     memset(&mLastNativeWindowCrop, 0, sizeof(mLastNativeWindowCrop));
+     mLastNativeWindowDataSpace = HAL_DATASPACE_UNKNOWN;
  
 +#ifdef MTK_HARDWARE
 +    OMX_COLOR_FORMATTYPE eHalColorFormat = def.format.video.eColorFormat;
@@ -1416,15 +1416,26 @@ index 9dda86180..a67636aa3 100644
      ALOGV("gralloc usage: %#x(OMX) => %#x(ACodec)", omxUsage, usage);
      err = setNativeWindowSizeFormatAndUsage(
              nativeWindow,
-@@ -1053,6 +1068,8 @@ status_t ACodec::setupNativeWindowSizeFormatAndUsage(
+             def.format.video.nFrameWidth,
              def.format.video.nFrameHeight,
- #ifdef USE_SAMSUNG_COLORFORMAT
-             eNativeColorFormat,
-+#elif MTK_HARDWARE
++#ifdef MTK_HARDWARE
 +            eHalColorFormat,
- #else
++#else
              def.format.video.eColorFormat,
- #endif
++#endif
+             mRotationDegrees,
+             usage,
+             reconnect);
+@@ -346,6 +346,9 @@ protected:
+     status_t submitOutputMetadataBuffer();
+     void signalSubmitOutputMetadataBufferIfEOS_workaround();
+     status_t allocateOutputBuffersFromNativeWindow();
++#ifdef MTK_HARDWARE
++    void setHalWindowColorFormat(OMX_COLOR_FORMATTYPE &eHalColorFormat);
++#endif
+     status_t cancelBufferToNativeWindow(BufferInfo *info);
+     status_t freeOutputBuffersNotOwnedByComponent();
+     BufferInfo *dequeueBufferFromNativeWindow();
 @@ -1443,6 +1460,29 @@ void ACodec::setNativeWindowColorFormat(OMX_COLOR_FORMATTYPE &eNativeColorFormat
  }
  #endif
