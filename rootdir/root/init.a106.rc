@@ -1,6 +1,6 @@
-# sprout storage specific rc file.
+# a106 storage specific rc file.
 
-import /init.sprout_common.rc
+import /init.a106_common.rc
 
 on init
     # See storage config details at http://source.android.com/tech/storage/
