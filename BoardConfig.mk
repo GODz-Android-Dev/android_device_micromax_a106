@@ -18,6 +18,7 @@ USE_NINJA := true
 
 # Block based ota
 BLOCK_BASED_OTA := false
+LEGACY_NEEDS_PUBLIC_LAYERVECTOR := true
 
 # Storage allocations
 BOARD_BOOTIMAGE_PARTITION_SIZE := 16777216
