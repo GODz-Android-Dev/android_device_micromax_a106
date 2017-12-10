@@ -2,13 +2,15 @@ diff --git a/server/NatController.cpp b/server/NatController.cpp
 index cda8f5f..5346511 100644
 --- a/server/NatController.cpp
 +++ b/server/NatController.cpp
-@@ -345,25 +345,6 @@ int NatController::setForwardRules(bool add, const char *intIface, const char *e
+@@ -362,27 +362,6 @@ int NatController::setForwardRules(bool add, const char *intIface, const char *e
              LOCAL_TETHER_COUNTERS_CHAIN
      };
  
 -    const char *cmd4[] = {
 -            IP6TABLES_PATH,
 -            "-w",
+-            "-W",
+-            IPTABLES_RETRY_INTERVAL,
 -            "-t",
 -            "raw",
 -            add ? "-A" : "-D",
@@ -40,14 +42,14 @@ index cda8f5f..5346511 100644
      if (setTetherCountingRules(add, intIface, extIface) && add) {
          rc = -1;
          goto err_return;
-@@ -388,9 +364,6 @@ int NatController::setForwardRules(bool add, const char *intIface, const char *e
+@@ -407,9 +381,6 @@ int NatController::setForwardRules(bool add, const char *intIface, const char *e
  
      return 0;
  
 -err_rpfilter:
--    cmd3[2] = "-D";
+-    cmd3[4] = "-D";
 -    runCmd(ARRAY_SIZE(cmd3), cmd3);
  err_return:
-     cmd2[2] = "-D";
+     cmd2[4] = "-D";
      runCmd(ARRAY_SIZE(cmd2), cmd2);
 

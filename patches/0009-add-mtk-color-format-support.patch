@@ -653,17 +653,16 @@ diff --git a/include/media/stagefright/ACodec.h b/include/media/stagefright/ACod
 index d68263272..10a3905ef 100644
 --- a/include/media/stagefright/ACodec.h
 +++ b/include/media/stagefright/ACodec.h
-@@ -351,6 +351,9 @@ struct ACodec : public AHierarchicalStateMachine, public CodecBase {
- #ifdef USE_SAMSUNG_COLORFORMAT
-     void setNativeWindowColorFormat(OMX_COLOR_FORMATTYPE &eNativeColorFormat);
- #endif
-+#ifdef MTK_HARDWARE
+@@ -346,6 +346,9 @@ protected:
+     status_t submitOutputMetadataBuffer();
+     void signalSubmitOutputMetadataBufferIfEOS_workaround();
+     status_t allocateOutputBuffersFromNativeWindow();
++    #ifdef MTK_HARDWARE
 +    void setHalWindowColorFormat(OMX_COLOR_FORMATTYPE &eHalColorFormat);
-+#endif
++    #endif
      status_t cancelBufferToNativeWindow(BufferInfo *info);
      status_t freeOutputBuffersNotOwnedByComponent();
-     BufferInfo *dequeueBufferFromNativeWindow();
-diff --git a/include/media/stagefright/ColorConverter.h b/include/media/stagefright/ColorConverter.h
+     BufferInfo *dequeueBufferFromNativeWindow();diff --git a/include/media/stagefright/ColorConverter.h b/include/media/stagefright/ColorConverter.h
 index c69277080..f2fb476a8 100644
 --- a/include/media/stagefright/ColorConverter.h
 +++ b/include/media/stagefright/ColorConverter.h
@@ -1426,16 +1425,6 @@ index 9dda86180..a67636aa3 100644
              mRotationDegrees,
              usage,
              reconnect);
-@@ -346,6 +346,9 @@ protected:
-     status_t submitOutputMetadataBuffer();
-     void signalSubmitOutputMetadataBufferIfEOS_workaround();
-     status_t allocateOutputBuffersFromNativeWindow();
-+#ifdef MTK_HARDWARE
-+    void setHalWindowColorFormat(OMX_COLOR_FORMATTYPE &eHalColorFormat);
-+#endif
-     status_t cancelBufferToNativeWindow(BufferInfo *info);
-     status_t freeOutputBuffersNotOwnedByComponent();
-     BufferInfo *dequeueBufferFromNativeWindow();
 @@ -1443,6 +1460,29 @@ void ACodec::setNativeWindowColorFormat(OMX_COLOR_FORMATTYPE &eNativeColorFormat
  }
  #endif
