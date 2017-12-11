@@ -21,7 +21,7 @@ cd ../..
 cd system/netd
 patch -p1 < ../../device/micromax/a106/patches/netd.patch
 cd ../../..
-cd frameworks/av
+cd frameworks/native
 patch -p1 < ../../device/micromax/a106/patches/frameworks_native.patch
 cd ../..
 

@@ -2,8 +2,7 @@ diff --git a/server/NatController.cpp b/server/NatController.cpp
 index cda8f5f..5346511 100644
 --- a/server/NatController.cpp
 +++ b/server/NatController.cpp
-@@ -362,27 +362,6 @@ int NatController::setForwardRules(bool add, const char *in
-tIface, const char *e
+@@ -362,27 +362,6 @@ int NatController::setForwardRules(bool add, const char *intIface, const char *e
              LOCAL_TETHER_COUNTERS_CHAIN
      };
  
