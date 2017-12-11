@@ -1,0 +1,201 @@
+From 7a9064a3038d9f15ce121b6976e780d2da757df3 Mon Sep 17 00:00:00 2001
+From: LuK1337 <priv.luk@gmail.com>
+Date: Mon, 28 Aug 2017 19:48:45 +0200
+Subject: [PATCH] SF: Squashed hwrotation support
+
+Author: Ricardo Cerqueira <cyanogenmod@cerqueira.org>
+Date:   Sat Nov 24 23:11:49 2012 +0000
+
+    surfaceflinger: Reimplement hwrotation
+
+    Change-Id: Ia26bb36b5b6de132af49c272c4472ad2703afbda
+
+    Fix boot animation rotation problem when ro.sf.hwrotation is set to 90 or 270
+
+    Change-Id: I7ad3c83e23ce38280818ec5283d173d50c889531
+
+    sf: Only apply hwrotation to primary displays
+
+    Change-Id: Ib51030cec5ce7609f12be9a5e46310f75442b680
+
+    surfaceflinger: odd hw rotation (90/270) patch for swapping width/height
+
+    This patch works in addition to the following commit
+    re-implementing ro.sf.hwrotation:
+    https://github.com/CyanogenMod/android_frameworks_native/commit/7d283431efffc4402cb1a6cacf5da64729c883bb
+
+    When using values of 90 and 270 for ro.sf.hwrotation the
+    LCD width and height also need to be swapped to display properly.
+
+    Change-Id: I2874fdb8f8d8b855df6d62d338c9a22360491973
+    NOTE: This patch does not fix the initial startup of bootanimation
+
+    surfaceflinger: hwc1: Fix hwrotation
+
+    Change-Id: I1f8defb108ff944f07ac32e8b147d1d87e7089e0
+
+Author: Christopher N. Hesse <raymanfx@gmail.com>
+Date:   Thu Aug 10 00:10:37 2017 +0200
+
+    SF: Improve hwrotation handling
+
+    Avoid getprop() calls in performance critical display
+    code paths.
+    Instead of querying the property each time we need it,
+    we read it once during initialization and then reuse
+    the cached value.
+
+    This is more appropriate here because we do not expect
+    the value to change at runtime. In fact, this property
+    behaves like a compile time constant in the real world:
+    Set it once and never again (because the angle of your
+    panel is fixed and does not change after the device
+    leaves the factory).
+
+    Change-Id: I55c4131735a65c7bdde8b00c166913bffa6c4ec3
+
+Change-Id: I9eb5728a11b08548af21edaeb4d3905ab4b3a833
+---
+ services/surfaceflinger/DisplayDevice.cpp       | 17 ++++++++++++++++-
+ services/surfaceflinger/DisplayDevice.h         |  2 ++
+ services/surfaceflinger/SurfaceFlinger.cpp      | 18 ++++++++++++++----
+ services/surfaceflinger/SurfaceFlinger.h        |  3 +++
+ services/surfaceflinger/SurfaceFlinger_hwc1.cpp | 20 ++++++++++++++++----
+ 5 files changed, 51 insertions(+), 9 deletions(-)
+
+diff --git a/services/surfaceflinger/DisplayDevice.cpp b/services/surfaceflinger/DisplayDevice.cpp
+index 8c3df7fb8..439c8db0b 100644
+--- a/services/surfaceflinger/DisplayDevice.cpp
++++ b/services/surfaceflinger/DisplayDevice.cpp
+@@ -187,6 +187,11 @@ DisplayDevice::DisplayDevice(
+     property_get("ro.panel.mountflip", property, "0");
+     mPanelMountFlip = atoi(property);
+ 
++    // we store the value as orientation:
++    // 90 -> 1, 180 -> 2, 270 -> 3
++    mHardwareRotation = property_get_int32("ro.sf.hwrotation", 0) / 90;
++
++
+     // initialize the display orientation transform.
+     setProjection(DisplayState::eOrientationDefault, mViewport, mFrame);
+ 
+@@ -482,6 +487,12 @@ status_t DisplayDevice::orientationToTransfrom(
+         int orientation, int w, int h, Transform* tr)
+ {
+     uint32_t flags = 0;
++
++    if (mHardwareRotation && mType == DisplayType::DISPLAY_PRIMARY) {
++        orientation += mHardwareRotation;
++        orientation %= 4;
++    }
++
+     switch (orientation) {
+     case DisplayState::eOrientationDefault:
+         flags = Transform::ROT_0;
+@@ -542,7 +553,11 @@ void DisplayDevice::setProjection(int orientation,
+     if (!frame.isValid()) {
+         // the destination frame can be invalid if it has never been set,
+         // in that case we assume the whole display frame.
+-        frame = Rect(w, h);
++        if (mHardwareRotation == 1 || mHardwareRotation == 3) {
++            frame = Rect(h, w);
++        } else {
++            frame = Rect(w, h);
++        }
+     }
+ 
+     if (viewport.isEmpty()) {
+diff --git a/services/surfaceflinger/DisplayDevice.h b/services/surfaceflinger/DisplayDevice.h
+index 7fba35c50..cc8f572a4 100644
+--- a/services/surfaceflinger/DisplayDevice.h
++++ b/services/surfaceflinger/DisplayDevice.h
+@@ -271,6 +271,8 @@ class DisplayDevice : public LightRefBase<DisplayDevice>
+     int mActiveConfig;
+     // Panel's mount flip, H, V or 180 (HV)
+     uint32_t mPanelMountFlip;
++    // Panel hardware rotation
++    int32_t mHardwareRotation;
+ #ifdef USE_HWC2
+     // current active color mode
+     android_color_mode_t mActiveColorMode;
+diff --git a/services/surfaceflinger/SurfaceFlinger.cpp b/services/surfaceflinger/SurfaceFlinger.cpp
+index a41a7a3ed..3d540eae9 100644
+--- a/services/surfaceflinger/SurfaceFlinger.cpp
++++ b/services/surfaceflinger/SurfaceFlinger.cpp
+@@ -751,10 +751,20 @@ status_t SurfaceFlinger::getDisplayConfigs(const sp<IBinder>& display,
+             info.orientation = 0;
+         }
+ 
+-        info.w = hwConfig->getWidth();
+-        info.h = hwConfig->getHeight();
+-        info.xdpi = xdpi;
+-        info.ydpi = ydpi;
++        char value[PROPERTY_VALUE_MAX];
++        property_get("ro.sf.hwrotation", value, "0");
++        int additionalRot = atoi(value) / 90;
++        if ((type == DisplayDevice::DISPLAY_PRIMARY) && (additionalRot & DisplayState::eOrientationSwapMask)) {
++            info.h = hwConfig->getWidth();
++            info.w = hwConfig->getHeight();
++            info.xdpi = ydpi;
++            info.ydpi = xdpi;
++        } else {
++            info.w = hwConfig->getWidth();
++            info.h = hwConfig->getHeight();
++            info.xdpi = xdpi;
++            info.ydpi = ydpi;
++        }
+         info.fps = 1e9 / hwConfig->getVsyncPeriod();
+         info.appVsyncOffset = vsyncPhaseOffsetNs;
+ 
+diff --git a/services/surfaceflinger/SurfaceFlinger.h b/services/surfaceflinger/SurfaceFlinger.h
+index b89289af5..a923751ac 100644
+--- a/services/surfaceflinger/SurfaceFlinger.h
++++ b/services/surfaceflinger/SurfaceFlinger.h
+@@ -620,6 +620,9 @@ class SurfaceFlinger : public BnSurfaceComposer,
+     void updateVrFlinger();
+ #endif
+ 
++    // Panel hardware rotation
++    int32_t mHardwareRotation;
++
+     /* ------------------------------------------------------------------------
+      * Attributes
+      */
+diff --git a/services/surfaceflinger/SurfaceFlinger_hwc1.cpp b/services/surfaceflinger/SurfaceFlinger_hwc1.cpp
+index cab59f86b..052c7aa1f 100644
+--- a/services/surfaceflinger/SurfaceFlinger_hwc1.cpp
++++ b/services/surfaceflinger/SurfaceFlinger_hwc1.cpp
+@@ -208,6 +208,10 @@ SurfaceFlinger::SurfaceFlinger()
+     property_get("ro.sf.disable_triple_buffer", value, "1");
+     mLayerTripleBufferingDisabled = atoi(value);
+     ALOGI_IF(mLayerTripleBufferingDisabled, "Disabling Triple Buffering");
++
++    // we store the value as orientation:
++    // 90 -> 1, 180 -> 2, 270 -> 3
++    mHardwareRotation = property_get_int32("ro.sf.hwrotation", 0) / 90;
+ }
+ 
+ void SurfaceFlinger::onFirstRef()
+@@ -734,10 +738,18 @@ status_t SurfaceFlinger::getDisplayConfigs(const sp<IBinder>& display,
+             info.orientation = 0;
+         }
+ 
+-        info.w = hwConfig.width;
+-        info.h = hwConfig.height;
+-        info.xdpi = xdpi;
+-        info.ydpi = ydpi;
++        if ((type == DisplayDevice::DISPLAY_PRIMARY) &&
++                (mHardwareRotation & DisplayState::eOrientationSwapMask)) {
++            info.h = hwConfig.width;
++            info.w = hwConfig.height;
++            info.xdpi = ydpi;
++            info.ydpi = xdpi;
++        } else {
++            info.w = hwConfig.width;
++            info.h = hwConfig.height;
++            info.xdpi = xdpi;
++            info.ydpi = ydpi;
++        }
+         info.fps = float(1e9 / hwConfig.refresh);
+         info.appVsyncOffset = vsyncPhaseOffsetNs;
+ 
