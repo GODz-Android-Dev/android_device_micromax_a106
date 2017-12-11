@@ -20,7 +20,7 @@ patch -p1 < ../../device/micromax/a106/patches/0009-add-mtk-color-format-support
 cd ../..
 cd system/netd
 patch -p1 < ../../device/micromax/a106/patches/netd.patch
-cd ../../..
+cd ../..
 cd frameworks/native
 patch -p1 < ../../device/micromax/a106/patches/frameworks_native.patch
 cd ../..
