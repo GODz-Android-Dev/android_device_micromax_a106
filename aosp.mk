@@ -5,7 +5,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
 # Call device specific makefile
-$(call inherit-product, device/micromax/a106/lineage_a106.mk)
+$(call inherit-product, device/micromax/a106/aosp_a106.mk)
 
 LOCAL_PATH := device/micromax/a106
 
