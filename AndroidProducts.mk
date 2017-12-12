@@ -1,2 +1,2 @@
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/aosp_106.mk
+    $(LOCAL_DIR)/mokee_106.mk
