@@ -12,4 +12,4 @@
 
 # N doesn't needs to mount internal storage
 /devices/platform/mtk-msdc.1/mmc_host*		auto	auto	defaults		voldmanaged=sdcard1:auto,encryptable=userdata
-/devices/platform/mt_usb*		auto 	auto	defaults	voldmanaged=usb:auto
+/devices/platform/mt_usb		auto 	auto	defaults	voldmanaged=usbotg:auto
