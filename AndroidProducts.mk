@@ -1,2 +1,2 @@
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/lineage.mk
+    $(LOCAL_DIR)/nitrogen_a106.mk
