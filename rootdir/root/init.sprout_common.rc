@@ -881,7 +881,7 @@ service thermal_manager /system/bin/thermal_manager
     user root
     oneshot
 
-service battery_charger /charger
+service charger /charger /sbin/healthd -c
     class charger
     seclabel u:r:healthd:s0
 #
