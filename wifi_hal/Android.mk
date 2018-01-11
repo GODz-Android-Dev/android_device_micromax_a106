@@ -11,12 +11,8 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-#
-# 2017-01-17:
-# modified for mediatek mt6752 by: daniel_hk (https://github/danielhk)
 
 LOCAL_PATH := $(call my-dir)
-
 # Make the HAL library
 # ============================================================
 include $(CLEAR_VARS)
@@ -41,9 +37,10 @@ LOCAL_SRC_FILES := \
 	rtt.cpp \
 	common.cpp \
 	cpp_bindings.cpp \
-	gscan.cpp
+	gscan.cpp \
+	link_layer_stats.cpp \
+	wifi_offload.cpp
 
 LOCAL_MODULE := libwifi-hal-mt66xx
 
 include $(BUILD_STATIC_LIBRARY)
-

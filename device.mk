@@ -59,7 +59,8 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
      $(LOCAL_PATH)/configs/thermal.conf:system/etc/.tp/thermal.conf \
      $(LOCAL_PATH)/configs/.ht120.mtc:system/etc/.tp/.ht120.mtc \
-     $(LOCAL_PATH)/configs/thermal.off.conf:system/etc/.tp/thermal.off.conf
+     $(LOCAL_PATH)/configs/thermal.off.conf:system/etc/.tp/thermal.off.conf \
+     $(LOCAL_PATH)/configs/android.hardware.usb.host.xml:system/etc/permissions/android.hardware.usb.host.xml
 	
 # Keylayout
 PRODUCT_COPY_FILES += \
@@ -161,6 +162,9 @@ PRODUCT_AAPT_PREF_CONFIG := hdpi
 # call the proprietary setup
 $(call inherit-product, vendor/micromax/a106/a106-vendor.mk)
 
+# MicroG
+$(call inherit-product, $(LOCAL_PATH)/microG.mk)
+
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 $(call inherit-product, frameworks/native/build/phone-xhdpi-1024-dalvik-heap.mk)
@@ -201,9 +205,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 USE_CUSTOM_AUDIO_POLICY := 1
 
-#KERNEL ADIUTOR
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/priv-app/KernelAdiutor/KernelAdiutor.apk:system/priv-app/KernelAdiutor/KernelAdiutor.apk
+
 
 # FASTER BOOTANIMATION
 TARGET_BOOTANIMATION_HALF_RES := true
