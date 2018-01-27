@@ -42,14 +42,12 @@ public final class Utils {
 
     protected static void startService(Context context) {
         if (DEBUG) Log.d(TAG, "Starting service");
-        context.startServiceAsUser(new Intent(context, DozeService.class),
-                UserHandle.CURRENT);
+        context.startService(new Intent(context, DozeService.class));
     }
 
     protected static void stopService(Context context) {
         if (DEBUG) Log.d(TAG, "Stopping service");
-        context.stopServiceAsUser(new Intent(context, DozeService.class),
-                UserHandle.CURRENT);
+        context.stopService(new Intent(context, DozeService.class));
     }
 
     protected static boolean isDozeEnabled(Context context) {
