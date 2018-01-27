@@ -50,7 +50,7 @@ public final class Utils {
     }
 
     protected static void checkDozeService(Context context) {
-        if (isDozeEnabled(context)) {
+        if (isDozeEnabled(context) && sensorsEnabled(context)) {
             startService(context);
         } else {
             stopService(context);
