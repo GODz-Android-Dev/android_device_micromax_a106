@@ -97,7 +97,7 @@ PRODUCT_PACKAGES += \
 
 # Doze
 PRODUCT_PACKAGES += \
-    Doze
+    DozeServices
 
 # Camera
 PRODUCT_PACKAGES += \
