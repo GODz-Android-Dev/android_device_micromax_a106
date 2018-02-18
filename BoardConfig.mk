@@ -14,7 +14,8 @@ TARGET_CPU_VARIANT:= cortex-a7
 TARGET_CPU_MEMCPY_OPT_DISABLE := true
 
 # NINJA
-USE_NINJA := true
+USE_NINJA :=true
+WITH_DEXPREOPT=false
 
 # Block based ota
 BLOCK_BASED_OTA := false
