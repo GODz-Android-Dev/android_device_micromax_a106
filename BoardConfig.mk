@@ -16,6 +16,7 @@ TARGET_CPU_MEMCPY_OPT_DISABLE := true
 # NINJA
 USE_NINJA :=true
 WITH_DEXPREOPT=false
+DISABLE_DEXPREOPT := true
 
 # Block based ota
 BLOCK_BASED_OTA := false
@@ -30,18 +31,18 @@ BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_FLASH_BLOCK_SIZE := 131072
 
 # kernel stuff
-BOARD_CUSTOM_BOOTIMG_MK := $(LOCAL_PATH)/tools/bootimg.mk
+#BOARD_CUSTOM_BOOTIMG_MK := $(LOCAL_PATH)/tools/bootimg.mk
 MTK_PLATFORM := mt6582
 MTK_PROJECT := a106
-TARGET_KERNEL_SOURCE := kernel/micromax/a106
-TARGET_KERNEL_CONFIG := a106_defconfig
-BOARD_KERNEL_CMDLINE :=
+#TARGET_KERNEL_SOURCE := kernel/micromax/a106
+#TARGET_KERNEL_CONFIG := a106_defconfig
+#BOARD_KERNEL_CMDLINE :=
 BOARD_MKBOOTIMG_ARGS := --kernel_offset 0x00008000 --ramdisk_offset 0x01000000 --tags_offset 0x00000100
 BOARD_KERNEL_BASE := 0x10000000
 BOARD_KERNEL_PAGESIZE := 2048
 #KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/$(HOST_OS)-x86/arm/arm-eabi-4.8/bin
 #KERNEL_TOOLCHAIN_PREFIX := arm-eabi-
-#TARGET_PREBUILT_KERNEL := device/micromax/a106/kernel
+TARGET_PREBUILT_KERNEL := device/micromax/a106/kernel
 
 # Hack for build
 $(shell mkdir -p $(OUT)/obj/KERNEL_OBJ/usr)
