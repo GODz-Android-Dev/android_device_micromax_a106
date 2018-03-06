@@ -13,3 +13,4 @@
 # N doesn't needs to mount internal storage
 /devices/platform/mtk-msdc.1/mmc_host*		auto	auto	defaults		voldmanaged=sdcard1:auto,encryptable=userdata
 /devices/platform/mt_usb		auto 	auto	defaults	voldmanaged=usbotg:auto
+/dev/block/zram0  none               swap      defaults    zramsize=536870912,zramstreams=4

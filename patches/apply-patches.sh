@@ -11,6 +11,7 @@ patch -p1 < ../device/micromax/a106/patches/0002-Apply-LIBC-version-to-__pthread
 cd ..
 cd packages/apps/Settings
 patch -p1 -b < ../../../device/micromax/a106/patches/0005-add-author-info-in-device-info.patch
+git clean -f -d
 cd ../../..
 cd frameworks/av
 patch -p1 < ../../device/micromax/a106/patches/0006-fix-access-wvm-to-ReadOptions.patch

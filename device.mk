@@ -83,8 +83,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/root/ueventd.sprout.rc:root/ueventd.sprout.rc \
     $(LOCAL_PATH)/rootdir/root/init.sprout.usb.rc:root/init.sprout.usb.rc \
     $(LOCAL_PATH)/rootdir/root/init.zeta0y_core.rc:root/init.zeta0y_core.rc \
-    $(LOCAL_PATH)/rootdir/root/fstab.sprout:root/fstab.sprout \
-    $(LOCAL_PATH)/rootdir/root/enableswap.sh:root/enableswap.sh
+    $(LOCAL_PATH)/rootdir/root/fstab.sprout:root/fstab.sprout
 	
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/root/twrp.fstab:recovery/root/etc/twrp.fstab
@@ -161,9 +160,6 @@ PRODUCT_AAPT_PREF_CONFIG := hdpi
 
 # call the proprietary setup
 $(call inherit-product, vendor/micromax/a106/a106-vendor.mk)
-
-# MicroG
-$(call inherit-product, $(LOCAL_PATH)/microG.mk)
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
