@@ -1,1 +1,1 @@
-add_lunch_combo aosp_a106-userdebug
+add_lunch_combo du_a106-userdebug

@@ -3,9 +3,11 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base.mk)
 
 # Needed stuff
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
+$(call inherit-product, vendor/du/config/common_full_phone.mk)
 
 # Call device specific makefile
-$(call inherit-product, device/micromax/a106/aosp.mk)
+$(call inherit-product, device/micromax/a106/du.mk)
+
 LOCAL_PATH := device/micromax/a106
 
 # Common CM stuff
@@ -13,7 +15,7 @@ CM_BUILD := a106
 
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_FINGERPRINT=7.1.2/MRA58M/2280749:user/release-keys PRIVATE_BUILD_DESC="a106-user 7.1.2 MRA58M 2280749 release-keys"
 
-PRODUCT_NAME := aosp_a106
+PRODUCT_NAME := du_a106
 PRODUCT_DEVICE := a106
 PRODUCT_BRAND := micromax
 PRODUCT_MANUFACTURER := Mediatek
