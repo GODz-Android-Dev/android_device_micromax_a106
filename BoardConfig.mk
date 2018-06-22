@@ -168,7 +168,7 @@ BOARD_SEPOLICY_DIRS += \
     device/micromax/a106/sepolicy
     
 # Symbols for Sprout
-LINKER_FORCED_SHIM_LIBS := /system/lib/libcam_utils.so|libshim_camera.so
+LINKER_FORCED_SHIM_LIBS := /system/lib/libcam_utils.so|libshim_atomic.so
 LINKER_FORCED_SHIM_LIBS += /system/lib/librilmtk.so|libshim_ril.so
 
 # Hack for build

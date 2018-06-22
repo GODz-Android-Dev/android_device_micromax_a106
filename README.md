@@ -15,5 +15,11 @@ Camera  | 5MPx
 
 This branch is for building LineageOS 15.1 ROMS.
 
-
+#### Whats Working ?
+ * Wifi
+ * Bluetooth
+ * Vibration
+ * Audio
+ * MTP
+ * Offline charging
 

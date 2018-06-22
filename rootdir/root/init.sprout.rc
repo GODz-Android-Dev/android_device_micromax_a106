@@ -6,4 +6,4 @@ on init
     symlink /sdcard /storage/sdcard0
 
     # By default, primary storage is physical
-    setprop ro.vold.primary_physical 1
+    #setprop ro.vold.primary_physical 1

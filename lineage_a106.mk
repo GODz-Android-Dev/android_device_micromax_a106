@@ -121,15 +121,19 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
 	FMRadio
 
+# Display
+PRODUCT_PACKAGES += \
+    libion
+
 # Camera
 PRODUCT_PACKAGES += \
 	Snap
 
-PRODUCT_PACKAGES += \
-    camera.device@1.0-impl \
-    camera.device@3.2-impl \
-    android.hardware.camera.provider@2.4-impl \
-    android.hardware.camera.provider@2.4-service
+#PRODUCT_PACKAGES += \
+#    camera.device@1.0-impl \
+#    camera.device@3.2-impl \
+#    android.hardware.camera.provider@2.4-impl \
+#    android.hardware.camera.provider@2.4-service
 
 # Wifi
 PRODUCT_PACKAGES += \
@@ -173,10 +177,10 @@ PRODUCT_PACKAGES += \
     android.hardware.usb@1.0-service
 
 # Sensors
-PRODUCT_PACKAGES += \
-    android.hardware.sensors@1.0-impl \
-    android.hardware.sensors@1.0-service \
-    sensors.sprout
+#PRODUCT_PACKAGES += \
+#    android.hardware.sensors@1.0-impl \
+#    android.hardware.sensors@1.0-service \
+#    sensors.sprout
 
 PRODUCT_COPY_FILES += \
      $(LOCAL_PATH)/configs/_hals.conf:system/vendor/etc/sensors/_hals.conf
@@ -200,10 +204,15 @@ PRODUCT_PACKAGES += \
     setup_fs \
     e2fsck
 
+# GPS
+PRODUCT_PACKAGES += \
+    libcurl
+
 PRODUCT_PACKAGES += \
     libshim_ril \
     libshim_camera \
     libshim_bionic \
+    libshim_atomic \
     libxlog
     
 # Vendor Interface Manifest
