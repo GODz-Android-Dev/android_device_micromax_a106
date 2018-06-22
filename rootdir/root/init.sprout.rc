@@ -3,10 +3,7 @@
 import /init.sprout_common.rc
 
 on init
-    # See storage config details at http://source.android.com/tech/storage/
-    mkdir /storage/sdcard 0555 root root
+    symlink /sdcard /storage/sdcard0
 
-    # Support legacy paths
-    symlink storage/sdcard sdcard
-    symlink storage/sdcard /mnt/sdcard
-
+    # By default, primary storage is physical
+    setprop ro.vold.primary_physical 1
