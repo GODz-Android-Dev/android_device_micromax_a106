@@ -120,6 +120,8 @@ TARGET_RUNNING_WITHOUT_SYNC_FRAMEWORK := true
 
 # Use half res bootanimation to speed up first boot sequence
 TARGET_BOOTANIMATION_HALF_RES := true
+TARGET_SCREEN_WIDTH := 480
+TARGET_SCREEN_HEIGHT := 800
 
 # Fonts
 EXTENDED_FONT_FOOTPRINT := true
